@@ -2,31 +2,36 @@ package com.example.dwspractica;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class RatingService {
-    private Map<Long, Rating>ratings=new ConcurrentHashMap<>();
+    private Map<Long, List<Rating>>ratings=new ConcurrentHashMap<>();
     private AtomicLong lastId=new AtomicLong();
 
-    public void addRating(Rating rating){
+    public void addRating(long idGame, Rating rating){
         long id=lastId.incrementAndGet();
         rating.setId(id);
-        this.ratings.put(id, rating);
+        List<Rating>aux= this.ratings.get(idGame);
+        aux.add(rating);
+        this.ratings.put(id, aux);
     }
-    public void deleteRating(long n){
-        this.ratings.remove(n);
+    public void deleteRating(long idGame, Rating rating){
+        List<Rating>aux=this.ratings.get(idGame);
+        aux.remove(rating);
+        this.ratings.put(idGame, aux);
     }
-    public Rating getRatings(long n){
-        return this.ratings.get(n);
+    public Rating getRatings(long idGame, long idRating){
+        List<Rating>aux=this.ratings.get(idGame);
+        return aux.get((int)idRating);
     }
-    public Collection<Rating>getRatings(){
-        return this.ratings.values();
-    }
-    public void updateRating(long id, Rating rating){
-        this.ratings.put(id, rating);
+    public Collection<Rating>getRatings(long idGame){
+        List<Rating>aux=this.ratings.get(idGame);
+        return aux;
     }
 }
