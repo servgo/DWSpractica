@@ -12,8 +12,22 @@ public class ShoppingCart {
 
     public float getPrecio(){
         float sum = 0;
-        for(Game game: games){float sum+=this
+        for(Game game: games){
+            sum+=game.getPrice();
         }
+        return sum;
+    }
+
+    public void addGame (Game game){
+        games.add(game);
+    }
+
+    public void deleteGame (Game game){
+        games.remove(game);
+    }
+
+    public void clearCart (){
+        this.games.removeAll();
     }
 
 
