@@ -19,6 +19,7 @@ public class GameController {
     @GetMapping("NewGame")
     public String newGame(Model model, @RequestParam String name, @RequestParam String platform, @RequestParam float price){
         gameService.addGame(new Game(name, platform, price));
-        return
+        return "CreatedGame";
     }
+
 }
