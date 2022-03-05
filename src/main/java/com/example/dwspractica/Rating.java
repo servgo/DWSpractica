@@ -3,7 +3,6 @@ package com.example.dwspractica;
 import java.time.LocalDateTime;
 
 public class Rating {
-    private final LocalDateTime date;
     private long id = -1;
     private int stars;
     private String title;
@@ -13,7 +12,6 @@ public class Rating {
         this.stars = stars;
         this.title = title;
         this.comment = comment;
-        this.date = LocalDateTime.now();
     }
 
     public int getStars() {

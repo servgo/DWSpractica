@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="styles.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-<h1 class="box">THE GAME HAS BEEN SUCCESSFULLY CREATED</h1>
+<div>
+    <h1 class="box">STORE</h1>
+    <h4>Add the game you want to the cart</h4>
+    {{#games}}
+    <h3>{{name}}- {{price}}€</h3>
+    <a class="minibutton" href="/game/{{id}}">Show details</a>
+    <br>
+    -----------------------------
+    {{/games}}
+</div>
+<br>
 <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
 
 </body>

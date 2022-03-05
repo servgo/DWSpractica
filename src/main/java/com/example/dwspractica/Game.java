@@ -7,13 +7,11 @@ public class Game {
     private String name;
     private String platform;
     private float price;
-    private LocalDateTime date;
 
     public Game(String name, String platform, float price) {
         this.name = name;
         this.platform = platform;
         this.price = price;
-        this.date = LocalDateTime.now();
     }
 
     public String getName() {
@@ -38,14 +36,6 @@ public class Game {
 
     public void setPrice(float price) {
         this.price = price;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
     }
 
     public long getId() {
