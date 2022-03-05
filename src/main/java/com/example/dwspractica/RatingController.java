@@ -36,11 +36,11 @@ public class RatingController {
     //We'll be redirected to "NewRating" related to a game and it's id
     @RequestMapping("/Game/{id}/Ratings/CreateRating")
     public String ratingCreation(Model model, @PathVariable int id) {
-        if (service.games.get(id) == null) {
+        if (gameService.getGames(id) == null) {
             return "error/401";
         }
         model.addAttribute("id", id);
-        model.addAttribute("game", service.games.get(id));
+        model.addAttribute("game", gameService.getGames(id));
         return "NewRating";
     }
 
@@ -48,13 +48,13 @@ public class RatingController {
     @RequestMapping("/NewRating")
     public String newRating(Model model, @RequestParam String title, @RequestParam String comment, @RequestParam int stars, @RequestParam int id) {
 
-        Game game = this.service.games.get(id);
-        List<Rating> aux = service.ratings.get(service.games.get(id));
+        Game game = this.gameService.getGames(id);
+        List<Rating> aux = (List<Rating>) ratingService.getRatings();
         if (aux == null) {
             aux = new ArrayList<>();
         }
         aux.add(new Rating(stars, title, comment));
-        service.ratings.put(game, aux);
+        ratingService.addRating(id, aux);
         return "CreatedRating.html";
     }
 
