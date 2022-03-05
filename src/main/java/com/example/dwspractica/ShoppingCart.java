@@ -9,7 +9,6 @@ public class ShoppingCart {
     private float precio;
     private List<Game> games = new ArrayList<>();
 
-
     public float getPrecio(){
         float sum = 0;
         for(Game game: games){
@@ -27,9 +26,6 @@ public class ShoppingCart {
     }
 
     public void clearCart (){
-        this.games.removeAll();
+        this.games.clear();
     }
-
-
-
 }
