@@ -48,12 +48,7 @@ public class RatingController {
     @RequestMapping("/NewRating")
     public String newRating(Model model, @RequestParam String title, @RequestParam String comment, @RequestParam int stars, @RequestParam int id) {
 
-        Game game = this.gameService.getGames(id);
-        List<Rating> aux = (List<Rating>) ratingService.getRatings();
-        if (aux == null) {
-            aux = new ArrayList<>();
-        }
-        aux.add(new Rating(stars, title, comment));
+        Rating aux = new Rating(stars, title, comment);
         ratingService.addRating(id, aux);
         return "CreatedRating.html";
     }
