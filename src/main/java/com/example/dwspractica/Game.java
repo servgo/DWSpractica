@@ -3,31 +3,18 @@ package com.example.dwspractica;
 import java.time.LocalDateTime;
 
 public class Game {
-    private static int idManager = 1;
-    private int id;
+    private long id=-1;
     private String name;
     private String platform;
     private float price;
     private LocalDateTime date;
 
     public Game(String name, String platform, float price) {
-        this.id = idManager;
         this.name = name;
         this.platform = platform;
         this.price = price;
         this.date = LocalDateTime.now();
-        idManager++;
     }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
@@ -58,5 +45,13 @@ public class Game {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
