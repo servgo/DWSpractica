@@ -1,5 +1,6 @@
 package com.example.dwspractica;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,19 +13,23 @@ import java.util.List;
 @Controller
 public class RatingController {
 
+    @Autowired
+    RatingService ratingService;
+    GameService gameService;
+
     //We can see a game's ratings. If it doesn't exist, we'll see an error
     @RequestMapping("Game/{id}/Ratings")
     public String showRating(Model model, @PathVariable int id) {
         model.addAttribute("id", id);
-        if (service.games.get(id) == null) {
+        if (gameService.getGames(id) == null) {
             return "error/401";
         }
-        if (service.ratings.get(service.games.get(id)) == null) {
+        if (gameService.getGames(id) == null) {
             model.addAttribute("empty", true);
         } else {
             model.addAttribute("empty", false);
         }
-        model.addAttribute("ratings", service.ratings.get(service.games.get(id)));
+        model.addAttribute("ratings", ratingService.getRatings(id));
         return "ShowRatings";
     }
 
