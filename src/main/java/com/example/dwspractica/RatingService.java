@@ -12,7 +12,7 @@ public class RatingService {
     private Map<Long, Rating>ratings=new ConcurrentHashMap<>();
     private AtomicLong lastId=new AtomicLong();
 
-    public void addRating(long GameId,Rating rating){
+    public void addRating(Rating rating){
         long id=lastId.incrementAndGet();
         rating.setId(id);
         this.ratings.put(id, rating);
