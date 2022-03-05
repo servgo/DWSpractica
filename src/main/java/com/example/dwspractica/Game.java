@@ -3,7 +3,7 @@ package com.example.dwspractica;
 import java.time.LocalDateTime;
 
 public class Game {
-    private long id=-1;
+    private long id = -1;
     private String name;
     private String platform;
     private float price;
@@ -15,6 +15,7 @@ public class Game {
         this.price = price;
         this.date = LocalDateTime.now();
     }
+
     public String getName() {
         return name;
     }
