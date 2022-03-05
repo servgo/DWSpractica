@@ -18,20 +18,32 @@ public class RatingService {
         long id=lastId.incrementAndGet();
         rating.setId(id);
         List<Rating>aux= this.ratings.get(idGame);
+        if (aux == null) {
+            aux = new ArrayList<>();
+        }
         aux.add(rating);
         this.ratings.put(id, aux);
     }
     public void deleteRating(long idGame, Rating rating){
         List<Rating>aux=this.ratings.get(idGame);
+        if (aux == null) {
+            aux = new ArrayList<>();
+        }
         aux.remove(rating);
         this.ratings.put(idGame, aux);
     }
     public Rating getRatings(long idGame, long idRating){
         List<Rating>aux=this.ratings.get(idGame);
+        if (aux == null) {
+            aux = new ArrayList<>();
+        }
         return aux.get((int)idRating);
     }
     public Collection<Rating>getRatings(long idGame){
         List<Rating>aux=this.ratings.get(idGame);
+        if (aux == null) {
+            aux = new ArrayList<>();
+        }
         return aux;
     }
 }
