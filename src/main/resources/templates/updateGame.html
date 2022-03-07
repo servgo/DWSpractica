@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<h1 class="box">Tell us some information about the game you want to add:</h1>
+
+<div class="margin">
+    {{#game}}
+    <form action="/updated/{{id}}">
+        <label>Name: </label>
+        <br>
+        <label>
+            <input name='name' type='text' value="{{name}}">
+        </label>
+        <br>
+        <label>Platform: </label>
+        <br>
+        <!-- <input type="text" name="platform"> -->
+        <label>
+            <select name="platform">
+                <option>PC</option>
+                <option>Xbox</option>
+                <option>PlayStation</option>
+                <option>Switch</option>
+                <option value="{{platform}}"></option>
+            </select>
+        </label>
+        <br>
+        <label>Price:</label>
+        <br>
+        <label>
+            <input min="0" name="price" step="any" type="number" value="{{price}}">
+        </label>
+        <br>
+        <hr style="width:25%;">
+        <input class="button" type="submit" value="SUBMIT">
+        <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
+
+
+    </form>
+    {{/game}}
+</div>
+</body>
+</html>

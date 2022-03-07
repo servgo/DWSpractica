@@ -38,5 +38,15 @@ public class GameController {
         gameService.deleteGame(id);
         return "DeletedGame";
     }
-
+    @GetMapping("/update/{id}")
+    public String updateGame(Model model, @PathVariable int id){
+        model.addAttribute("game", gameService.getGames(id));
+        return "updateGame";
+    }
+    @GetMapping("/updated/{id}")
+    public String updated(@RequestParam String name, @RequestParam String platform, @RequestParam float price, @PathVariable int id){
+        Game aux=new Game(name, platform, price);
+        gameService.updateGame(id, aux);
+        return "updated";
+    }
 }

@@ -14,7 +14,7 @@ Plataforma: {{platform}}
 Precio: {{price}}€
 <br>
 Id: {{id}}
-{{/game}}
+
 <br>
 
 <div>
@@ -26,12 +26,13 @@ Id: {{id}}
     <form action="/deleted/{{id}}">
         <input class="minibutton" type="submit" value="Delete">
     </form>
+    <a class="minibutton" href="/update/{{id}}">Edit game</a>
 </div>
 <br>
 <a class="button" href="/Game/{{id}}/Ratings">Show ratings</a>
 <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
 <a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>
 
-
+{{/game}}
 </body>
 </html>
