@@ -19,8 +19,6 @@ public class ShoppingCartController {
 
     @GetMapping("/addedToCart/{id}")
     public String newGameToCart(Model model, @PathVariable int id) {
-        System.out.println("hola");
-        System.out.println(gameService.getGames(id));
         shoppingCart.addGame(gameService.getGames(id));
         return "AddedToCart";
     }

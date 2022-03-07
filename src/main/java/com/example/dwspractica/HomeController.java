@@ -13,7 +13,6 @@ public class HomeController {
     GameService gameService;
     @Autowired
     ShoppingCart shoppingCart;
-
     @GetMapping("/")
     public String home(){
         return "index";
@@ -32,5 +31,4 @@ public class HomeController {
         model.addAttribute("cart", shoppingCart.getCart());
         return "ShoppingCart";
     }
-
 }
