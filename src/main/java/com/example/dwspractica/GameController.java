@@ -53,6 +53,7 @@ public class GameController {
     @GetMapping("/updated/{id}")
     public String updated(@RequestParam String name, @RequestParam String platform, @RequestParam float price, @PathVariable int id){
         Game aux=new Game(name, platform, price);
+        aux.setId(id);
         gameService.updateGame(id, aux);
         return "updated";
     }

@@ -41,4 +41,15 @@ public class GameRESTController {
             return new ResponseEntity<>(aux, HttpStatus.OK);
         }
     }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Game>update(@PathVariable int id, @RequestBody Game game){
+        if (!gameService.containsGame(id)){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            game.setId(id);
+            gameService.updateGame(id, game);
+            return new ResponseEntity<>(game, HttpStatus.OK);
+        }
+
+    }
 }

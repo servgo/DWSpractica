@@ -30,4 +30,7 @@ public class GameService {
     public void updateGame(long id, Game game){
         this.games.put(id, game);
     }
+    public boolean containsGame(long n){
+        return this.games.containsKey(n);
+    }
 }
