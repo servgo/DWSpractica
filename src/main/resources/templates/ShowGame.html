@@ -19,10 +19,13 @@ Id: {{id}}
 
 <div>
 
-    <form action="/AddToCart" style="display: inline-block">
+        <a class="minibutton" href="/addedToCart/{{id}}">Add to cart</a>
+    <br>
+    <br>
+
         <input name="id" type="hidden" value="{{id}}">
-        <input class="minibutton" type="submit" value="Add to cart">
-    </form>
+
+
     <form action="/deleted/{{id}}">
         <input class="minibutton" type="submit" value="Delete">
     </form>

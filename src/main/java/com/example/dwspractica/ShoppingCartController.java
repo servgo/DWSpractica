@@ -4,18 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 @Controller
 public class ShoppingCartController {
+
     @Autowired
     GameService gameService;
+    @Autowired
     ShoppingCart shoppingCart;
 
-    @GetMapping("/addedToCart")
-    public String newGameToCart(Model model, @RequestParam int id) {
-        shoppingCart.addGame(this.gameService.getGames(id));
+    @GetMapping("/addedToCart/{id}")
+    public String newGameToCart(Model model, @PathVariable int id) {
+        System.out.println("hola");
+        System.out.println(gameService.getGames(id));
+        shoppingCart.addGame(gameService.getGames(id));
         return "AddedToCart";
     }
 

@@ -1,14 +1,22 @@
 package com.example.dwspractica;
 
+import org.springframework.stereotype.Service;
+
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Service
 public class ShoppingCart {
     private float price=0;
-    private List<Game> games = new ArrayList<>();
+    private List<Game> games;
+
+    public ShoppingCart() {
+        this.price = 0;
+        this.games= new ArrayList<>();
+    }
 
     public float getPrecio(){
         return this.price;

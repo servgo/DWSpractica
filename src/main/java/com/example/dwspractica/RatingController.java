@@ -15,6 +15,7 @@ public class RatingController {
 
     @Autowired
     RatingService ratingService;
+    @Autowired
     GameService gameService;
 
     //We can see a game's ratings. If it doesn't exist, we'll see an error
