@@ -28,4 +28,8 @@ public class ShoppingCart {
         this.games.clear();
         this.price=0;
     }
+
+    public boolean esVacia (){
+        return this.games.isEmpty();
+    }
 }
