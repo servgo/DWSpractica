@@ -11,11 +11,10 @@ import java.util.List;
 @Service
 public class ShoppingCart {
     private float price=0;
-    private List<Game> games;
+    private List<Game> games= new ArrayList<>();
 
     public ShoppingCart() {
         this.price = 0;
-        this.games= new ArrayList<>();
     }
 
     public float getPrecio(){
@@ -39,5 +38,9 @@ public class ShoppingCart {
 
     public boolean esVacia (){
         return this.games.isEmpty();
+    }
+
+    public Collection<Game> getCart(){
+        return this.games;
     }
 }
