@@ -40,4 +40,7 @@ public class ShoppingCart {
     public boolean esVacia (){
         return this.games.isEmpty();
     }
+    public List<Game>getCart(){
+        return this.games;
+    }
 }
