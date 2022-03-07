@@ -23,7 +23,7 @@ public class ShoppingCartController {
         return "AddedToCart";
     }
 
-    @RequestMapping("/ShoppingCart")
+    @RequestMapping("/shoppingCart")
     public String showShoppingCart(Model model) {
 
         model.addAttribute("cart", shoppingCart);
