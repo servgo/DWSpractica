@@ -37,4 +37,8 @@ public class RatingService {
         return aux.values();
     }
 
+    public void updateRating (long idRating){
+        this.ratings.put(idRating,ratings.get(idRating));
+    }
+
 }

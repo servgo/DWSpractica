@@ -2,6 +2,7 @@ package com.example.dwspractica;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.Collection;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 @Service
+@SessionScope
 public class ShoppingCart {
 
     @Autowired
@@ -19,7 +21,7 @@ public class ShoppingCart {
 
 
     public float getPrecio() {
-        return this.price;
+        return games.values().stream().map(Game::getPrice).reduce(Float::sum).orElse((float) 0);
     }
 
     public void addGame(Game game) {
@@ -44,5 +46,10 @@ public class ShoppingCart {
 
     public Collection<Game> getCart() {
         return this.games.values();
+    }
+
+    public void updateCart(Game game) {
+        long id = game.getId();
+        games.put(id, game);
     }
 }

@@ -53,5 +53,9 @@ public class RatingController {
         return "DeletedRating";
     }
 
-
+    @GetMapping("/updateRating/{idRating}")
+    public String updateGame(Model model, @PathVariable int idRating){
+        model.addAttribute("game", gameService.getGames(idRating));
+        return "updateRating";
+    }
 }

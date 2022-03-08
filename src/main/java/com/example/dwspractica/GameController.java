@@ -13,6 +13,8 @@ import javax.annotation.PostConstruct;
 public class GameController {
     @Autowired
     GameService gameService;
+    @Autowired
+    ShoppingCart shoppingCart;
 
     @PostConstruct
     public void init() {
@@ -59,6 +61,7 @@ public class GameController {
         Game aux=new Game(name, platform, price);
         aux.setId(idGame);
         gameService.updateGame(idGame, aux);
+        shoppingCart.updateCart(aux);
         return "updated";
     }
 }
