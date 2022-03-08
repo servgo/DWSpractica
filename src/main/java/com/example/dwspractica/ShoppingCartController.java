@@ -33,16 +33,16 @@ public class ShoppingCartController {
         return "ShoppingCart";
     }
 
-    @GetMapping("/RemoveGame")
-    public String removeGameShoppingCart(Model model,@RequestParam Game game) {
-        shoppingCart.deleteGame(game);
-        return "RemovedGame.html";
+    @GetMapping("/RemoveGame/{id}")
+    public String removeGameShoppingCart(@PathVariable int id) {
+        shoppingCart.deleteGame(id);
+        return "RemovedGame";
     }
 
     @GetMapping("/RemoveShoppingCart")
     public String removeShoppingCart(Model model) {
         shoppingCart.clearCart();
-        return "RemovedShoppingCart.html";
+        return "RemovedShoppingCart";
     }
 }
 

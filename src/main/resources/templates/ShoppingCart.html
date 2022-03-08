@@ -12,11 +12,7 @@
 <h2>{{name}} - {{price}}€</h2>
 Platform: {{platform}} | Id: {{id}}
 
-<form action="/RemoveGame">
-    <input name="id" type="hidden" value="{{id}}">
-    <br>
-    <input class="minibutton" type="submit" value="Remove">
-</form>
+<a class="minibutton" href="/RemoveGame/{{id}}" style="background-color: crimson">Remove game</a>
 <br>
 ------------------------------------
 
@@ -27,6 +23,6 @@ Platform: {{platform}} | Id: {{id}}
 {{/cart}}
 <a class="button" href="/RemoveShoppingCart" style="background-color: crimson">Remove all games</a>
 <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
-<a class="button" href="/ShowGames" style="background-color: darkgrey">Back to games</a>
+<a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>
 </body>
 </html>
