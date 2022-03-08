@@ -9,26 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/home")
 public class HomeController {
-    @Autowired
-    GameService gameService;
-    @Autowired
-    ShoppingCart shoppingCart;
     @GetMapping("/")
     public String home(){
         return "index";
-    }
-    @GetMapping("/addGame")
-    public String addGame(){
-        return "NewGame";
-    }
-    @GetMapping("/showGames")
-    public String showGames(Model model){
-        model.addAttribute("games", gameService.getGames());
-        return "ShowGames";
-    }
-    @GetMapping("/shoppingCart")
-    public String shoppingCart(Model model){
-        model.addAttribute("cart", shoppingCart.getCart());
-        return "ShoppingCart";
     }
 }

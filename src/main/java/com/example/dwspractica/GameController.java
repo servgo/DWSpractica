@@ -18,6 +18,10 @@ public class GameController {
     public void init() {
         gameService.addGame(new Game("Elden Ring", "PC", 60));
     }
+    @GetMapping("/addGame")
+    public String addGame(){
+        return "NewGame";
+    }
 
     @GetMapping("/addedGame")
     public String newGame(@RequestParam String name, @RequestParam String platform, @RequestParam float price) {
