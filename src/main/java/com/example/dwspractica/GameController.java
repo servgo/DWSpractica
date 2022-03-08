@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +26,7 @@ public class GameController {
         return "NewGame";
     }
 
-    @GetMapping("/addedGame")
+    @PostMapping("/addedGame")
     public String newGame(@RequestParam String name, @RequestParam String platform, @RequestParam float price) {
         gameService.addGame(new Game(name, platform, price));
         return "CreatedGame";
@@ -46,7 +47,7 @@ public class GameController {
         return "ShowGame";
     }
 
-    @GetMapping("/deleted/{idGame}")
+    @PostMapping("/deleted/{idGame}")
     public String deleteGame(@PathVariable int idGame) {
         gameService.deleteGame(idGame);
         return "DeletedGame";

@@ -49,8 +49,7 @@ public class ShoppingCart {
     }
 
     public void updateCart(Game game) {
-        long id = game.getId();
-        games.put(id, game);
+        games.put(game.getId(), game);
     }
     public boolean containsGame(Game game){
         return this.games.containsKey(game.getId());

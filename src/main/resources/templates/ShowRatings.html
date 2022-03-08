@@ -17,14 +17,27 @@ Score: <strong>{{stars}}</strong>
 {{comment}}
 <br>
 <br>
-<a class="minibutton" href="/home/" style="background-color: darkgrey">Edit rating</a>
+<form
+        action="/game/{{idGame}}/updateRating/{{id}}" method="post">
+    <button class="minibutton" style="background-color: darkgrey">Edit rating</button>
+</form>
+
 <br>
 <br>
-<a class="minibutton" href="/game/{{idGame}}/deleteRating/{{id}}" style="background-color: darkgrey">Delete Rating</a>
+
+<form
+        action="/game/{{idGame}}/deleteRating/{{id}}" method="post">
+    <button class="minibutton" style="background-color: darkgrey">Delete rating</button>
+</form>
+
 <br>
 {{/ratings}}
 <br>
-<a class="button" href="/game/{{idGame}}/ratings/createRating">New Rating</a>
+<form
+        action="/game/{{idGame}}/ratings/createRating" method="post">
+    <button class="minibutton" style="background-color: darkgrey">New rating</button>
+</form>
+
 <a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>
 
 <br>
