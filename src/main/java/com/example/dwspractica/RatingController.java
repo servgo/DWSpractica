@@ -44,13 +44,13 @@ public class RatingController {
         return "CreatedRating";
     }
 
-    @GetMapping("/game/{idGame}/deleteRating/{id}")
+    @PostMapping("/game/{idGame}/deleteRating/{id}")
     public String deleteRating(Model model, @PathVariable int idGame, @PathVariable int id) {
         ratingService.deleteRating(idGame, id);
         return "DeletedRating";
     }
 
-    @GetMapping("/updateRating/{idRating}")
+    @PostMapping("/updateRating/{idRating}")
     public String updateGame(Model model, @PathVariable int idRating){
         model.addAttribute("game", gameService.getGames(idRating));
         return "updateRating";
