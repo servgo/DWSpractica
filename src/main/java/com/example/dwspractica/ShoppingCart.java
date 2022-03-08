@@ -30,8 +30,8 @@ public class ShoppingCart {
     }
 
     public void deleteGame(long id) {
-        games.remove(id);
         Game aux = gameService.getGames(id);
+        games.remove(id);
         this.price -= aux.getPrice();
     }
 
@@ -52,7 +52,7 @@ public class ShoppingCart {
         long id = game.getId();
         games.put(id, game);
     }
-    public boolean containsGame(Game game){
-        return this.games.containsKey(game.getId());
+    public boolean containsGame(long id){
+        return this.games.containsKey(id);
     }
 }

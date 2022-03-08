@@ -40,5 +40,8 @@ public class RatingService {
     public void updateRating (long idRating){
         this.ratings.put(idRating,ratings.get(idRating));
     }
-
+    public boolean containsRating(long idGame, long id){
+        Map<Long, Rating>aux=this.ratings.get(idGame);
+        return aux.containsKey(id);
+    }
 }

@@ -61,7 +61,7 @@ public class GameController {
         Game aux=new Game(name, platform, price);
         aux.setId(idGame);
         gameService.updateGame(idGame, aux);
-        if (shoppingCart.containsGame(aux)){
+        if (shoppingCart.containsGame(aux.getId())){
             shoppingCart.updateCart(aux);
         }
         return "updated";
