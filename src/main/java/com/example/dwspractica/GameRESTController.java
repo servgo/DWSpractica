@@ -13,6 +13,9 @@ import java.util.List;
 public class GameRESTController {
     @Autowired
     GameService gameService;
+    @Autowired
+    ShoppingCart shoppingCart;
+
     @PostMapping("/addGame")
     public ResponseEntity<Game>create(@RequestBody Game game){
         gameService.addGame(game);
@@ -48,6 +51,9 @@ public class GameRESTController {
         }else {
             game.setId(idGame);
             gameService.updateGame(idGame, game);
+            if (shoppingCart.containsGame(game)){
+                shoppingCart.updateCart(game);
+            }
             return new ResponseEntity<>(game, HttpStatus.OK);
         }
 

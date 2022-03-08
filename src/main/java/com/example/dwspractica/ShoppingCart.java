@@ -52,4 +52,7 @@ public class ShoppingCart {
         long id = game.getId();
         games.put(id, game);
     }
+    public boolean containsGame(Game game){
+        return this.games.containsKey(game.getId());
+    }
 }
