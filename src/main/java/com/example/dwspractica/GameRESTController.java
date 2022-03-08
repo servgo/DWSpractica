@@ -22,32 +22,32 @@ public class GameRESTController {
     public ResponseEntity<Collection<Game>>showAll(){
         return new ResponseEntity<>(gameService.getGames(), HttpStatus.OK);
     }
-    @GetMapping("/game/{id}")
-    public ResponseEntity<Game>showGame(@PathVariable int id){
-        Game aux=gameService.getGames(id);
+    @GetMapping("/game/{idGame}")
+    public ResponseEntity<Game>showGame(@PathVariable int idGame){
+        Game aux=gameService.getGames(idGame);
         if (aux==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
             return new ResponseEntity<>(aux, HttpStatus.OK);
         }
     }
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Game>delete(@PathVariable int id){
-        Game aux=gameService.getGames(id);
+    @DeleteMapping("/delete/{idGame}")
+    public ResponseEntity<Game>delete(@PathVariable int idGame){
+        Game aux=gameService.getGames(idGame);
         if (aux==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
-            gameService.deleteGame(id);
+            gameService.deleteGame(idGame);
             return new ResponseEntity<>(aux, HttpStatus.OK);
         }
     }
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Game>update(@PathVariable int id, @RequestBody Game game){
-        if (!gameService.containsGame(id)){
+    @PutMapping("/update/{idGame}")
+    public ResponseEntity<Game>update(@PathVariable int idGame, @RequestBody Game game){
+        if (!gameService.containsGame(idGame)){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else {
-            game.setId(id);
-            gameService.updateGame(id, game);
+            game.setId(idGame);
+            gameService.updateGame(idGame, game);
             return new ResponseEntity<>(game, HttpStatus.OK);
         }
 

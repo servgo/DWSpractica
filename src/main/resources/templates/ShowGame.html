@@ -13,27 +13,27 @@ Plataforma: {{platform}}
 <br>
 Precio: {{price}}€
 <br>
-Id: {{id}}
+Id: {{idGame}}
 
 <br>
 
 <div>
 
-        <a class="minibutton" href="/addedToCart/{{id}}">Add to cart</a>
+        <a class="minibutton" href="/addedToCart/{{idGame}}">Add to cart</a>
     <br>
     <br>
 
-        <input name="id" type="hidden" value="{{id}}">
+        <input name="id" type="hidden" value="{{idGame}}">
 
 
-    <form action="/deleted/{{id}}">
+    <form action="/deleted/{{idGame}}">
         <input class="minibutton" type="submit" value="Delete">
     </form>
     <br>
-    <a class="minibutton" href="/update/{{id}}">Edit game</a>
+    <a class="minibutton" href="/update/{{idGame}}">Edit game</a>
 </div>
 <br>
-<a class="button" href="/Game/{{id}}/Ratings">Show ratings</a>
+<a class="button" href="/game/{{idGame}}/ratings">Show ratings</a>
 <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
 <a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>
 

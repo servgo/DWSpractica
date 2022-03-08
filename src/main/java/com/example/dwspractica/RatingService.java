@@ -11,28 +11,30 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class RatingService {
-    private Map<Long, List<Rating>>ratings=new ConcurrentHashMap<>();
+    private Map<Long, Map<Long, Rating>>ratings=new ConcurrentHashMap<>();
     private AtomicLong lastId=new AtomicLong();
 
     public void addRating(long idGame, Rating rating){
         long id=lastId.incrementAndGet();
         rating.setId(id);
-        List<Rating>aux= this.ratings.get(idGame);
+        Map<Long, Rating>aux=this.ratings.get(idGame);
         if (aux == null) {
-            aux = new ArrayList<>();
+            aux = new ConcurrentHashMap<>();
         }
-        aux.add(rating);
-        this.ratings.put(id, aux);
+        aux.put(id, rating);
+        this.ratings.put(idGame, aux);
     }
-    public void deleteRating(long id){
-        ratings.remove(id);
+    public void deleteRating(long idGame, long idRating){
+        Map<Long, Rating>aux=this.ratings.get(idGame);
+        aux.remove(idRating);
+        this.ratings.put(idGame, aux);
     }
     public Collection<Rating> getRatings(long idGame){
-        List<Rating>aux=this.ratings.get(idGame);
+        Map<Long, Rating>aux=this.ratings.get(idGame);
         if (aux == null) {
-            aux = new ArrayList<>();
+            aux = new ConcurrentHashMap<>();
         }
-        return aux;
+        return aux.values();
     }
 
 }

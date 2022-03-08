@@ -7,7 +7,7 @@
 
 </head>
 <body>
-
+<h1 class="box">Ratings {{name}}</h1>
 {{#ratings}}
 <h1>Rating:</h1>
 <strong>{{title}}</strong>
@@ -20,11 +20,11 @@ Score: <strong>{{stars}}</strong>
 <a class="minibutton" href="/home/" style="background-color: darkgrey">Edit rating</a>
 <br>
 <br>
-<a class="minibutton" href="/deleteRating/{{id}}" style="background-color: darkgrey">Delete Rating</a>
+<a class="minibutton" href="/game/{{idGame}}/deleteRating/{{id}}" style="background-color: darkgrey">Delete Rating</a>
 <br>
 {{/ratings}}
 <br>
-<a class="button" href="/Game/{{id}}/Ratings/CreateRating">New Rating</a>
+<a class="button" href="/game/{{idGame}}/ratings/createRating">New Rating</a>
 <a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>
 
 <br>

@@ -35,30 +35,30 @@ public class GameController {
         return "ShowGames";
     }
 
-    @GetMapping("/game/{id}")
-    public String showGame(Model model, @PathVariable int id) {
-        model.addAttribute("game", gameService.getGames(id));
-        if (gameService.getGames(id) == null) {
+    @GetMapping("/game/{idGame}")
+    public String showGame(Model model, @PathVariable int idGame) {
+        model.addAttribute("game", gameService.getGames(idGame));
+        if (gameService.getGames(idGame) == null) {
             return "error/401";
         }
         return "ShowGame";
     }
 
-    @GetMapping("/deleted/{id}")
-    public String deleteGame(@PathVariable int id) {
-        gameService.deleteGame(id);
+    @GetMapping("/deleted/{idGame}")
+    public String deleteGame(@PathVariable int idGame) {
+        gameService.deleteGame(idGame);
         return "DeletedGame";
     }
-    @GetMapping("/update/{id}")
-    public String updateGame(Model model, @PathVariable int id){
-        model.addAttribute("game", gameService.getGames(id));
+    @GetMapping("/update/{idGame}")
+    public String updateGame(Model model, @PathVariable int idGame){
+        model.addAttribute("game", gameService.getGames(idGame));
         return "updateGame";
     }
-    @GetMapping("/updated/{id}")
-    public String updated(@RequestParam String name, @RequestParam String platform, @RequestParam float price, @PathVariable int id){
+    @GetMapping("/updated/{idGame}")
+    public String updated(@RequestParam String name, @RequestParam String platform, @RequestParam float price, @PathVariable int idGame){
         Game aux=new Game(name, platform, price);
-        aux.setId(id);
-        gameService.updateGame(id, aux);
+        aux.setId(idGame);
+        gameService.updateGame(idGame, aux);
         return "updated";
     }
 }

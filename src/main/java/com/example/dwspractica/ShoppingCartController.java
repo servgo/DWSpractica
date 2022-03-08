@@ -17,9 +17,9 @@ public class ShoppingCartController {
     @Autowired
     ShoppingCart shoppingCart;
 
-    @GetMapping("/addedToCart/{id}")
-    public String newGameToCart(Model model, @PathVariable int id) {
-        shoppingCart.addGame(gameService.getGames(id));
+    @GetMapping("/addedToCart/{idGame}")
+    public String newGameToCart(@PathVariable int idGame) {
+        shoppingCart.addGame(gameService.getGames(idGame));
         return "AddedToCart";
     }
 
@@ -33,9 +33,9 @@ public class ShoppingCartController {
         return "ShoppingCart";
     }
 
-    @GetMapping("/RemoveGame/{id}")
-    public String removeGameShoppingCart(@PathVariable int id) {
-        shoppingCart.deleteGame(id);
+    @GetMapping("/RemoveGame/{idGame}")
+    public String removeGameShoppingCart(@PathVariable int idGame) {
+        shoppingCart.deleteGame(idGame);
         return "RemovedGame";
     }
 

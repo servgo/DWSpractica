@@ -17,10 +17,11 @@ public class RatingController {
     GameService gameService;
 
     //We can see a game's ratings. If it doesn't exist, we'll see an error
-    @RequestMapping("Game/{id}/Ratings")
-    public String showRating(Model model, @PathVariable int id) {
-        model.addAttribute("ratings", ratingService.getRatings(id));
-        if (gameService.getGames(id) == null) {
+    @RequestMapping("game/{idGame}/ratings")
+    public String showRating(Model model, @PathVariable int idGame) {
+        model.addAttribute("name", gameService.getGames(idGame).getName());
+        model.addAttribute("ratings", ratingService.getRatings(idGame));
+        if (gameService.getGames(idGame) == null) {
             return "error/401";
         } else {
             return "ShowRatings";
@@ -28,29 +29,27 @@ public class RatingController {
     }
 
     //We'll be redirected to "NewRating" related to a game and it's id
-    @GetMapping("/Game/{id}/Ratings/CreateRating")
-    public String ratingCreation(Model model, @PathVariable int id) {
-        if (gameService.getGames(id) == null) {
+    @GetMapping("/game/{idGame}/ratings/createRating")
+    public String ratingCreation(Model model, @PathVariable int idGame) {
+        if (gameService.getGames(idGame) == null) {
             return "error/401";
         }
-        model.addAttribute("id", id);
-        model.addAttribute("game", gameService.getGames(id));
+        model.addAttribute("id", idGame);
+        model.addAttribute("game", gameService.getGames(idGame));
         return "NewRating";
     }
 
     //We are able to create ratings, adding a title, comments and a rating with stars
-    @GetMapping("/NewRating/{id}")
-    public String newRating(@RequestParam String title, @RequestParam String comment, @RequestParam int stars, @PathVariable int id) {
+    @GetMapping("/game/{idGame}/newRating")
+    public String newRating(@RequestParam String title, @RequestParam String comment, @RequestParam int stars, @PathVariable int idGame) {
         Rating aux = new Rating(stars, title, comment);
-        aux.setId(id);
-        ratingService.addRating(id, aux);
+        ratingService.addRating(idGame, aux);
         return "CreatedRating";
     }
 
-    @GetMapping("/deleteRating/{id}")
-    public String deleteRating(Model model, @PathVariable int id) {
-        model.addAttribute("id", id);
-        ratingService.deleteRating(id);
+    @GetMapping("/game/{idGame}/deleteRating/{id}")
+    public String deleteRating(Model model, @PathVariable int idGame, @PathVariable int id) {
+        ratingService.deleteRating(idGame, id);
         return "DeletedRating";
     }
 
