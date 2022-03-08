@@ -51,7 +51,7 @@ public class GameRESTController {
         }else {
             game.setId(idGame);
             gameService.updateGame(idGame, game);
-            if (shoppingCart.containsGame(game)){
+            if (shoppingCart.containsGame(game.getId())){
                 shoppingCart.updateCart(game);
             }
             return new ResponseEntity<>(game, HttpStatus.OK);
