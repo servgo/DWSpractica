@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
-@RequestMapping("/api")
-
 @RestController
+@RequestMapping("/api")
 public class ShoppingCartRESTController {
 
     @Autowired
@@ -22,21 +21,28 @@ public class ShoppingCartRESTController {
     public ResponseEntity<Collection<Game>>showAll(){
         return new ResponseEntity<>(shoppingCart.getCart(), HttpStatus.OK);
     }
-
-    @PostMapping("/remove/{idGame}")
-    public ResponseEntity<Game>delete(@PathVariable int idGame){
-        Game aux=gameService.getGames(idGame);
-        if (aux==null){
+    @PostMapping("/addToCart/{idGame}")
+    public ResponseEntity<Game>addToCart(@PathVariable int idGame){
+        if (!gameService.containsGame(idGame)){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }else{
-            gameService.deleteGame(idGame);
-            return new ResponseEntity<>(aux, HttpStatus.OK);
+            shoppingCart.addGame(gameService.getGames(idGame));
+            return new ResponseEntity<>(gameService.getGames(idGame), HttpStatus.OK);
         }
     }
-    @ResponseStatus (HttpStatus.OK)
-    @PostMapping ("/removeAll")
-    public void deleteAll(){
+    @DeleteMapping("/remove/{idGame}")
+    public ResponseEntity<Game>delete(@PathVariable int idGame){
+        if (!shoppingCart.containsGame(idGame)){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else{
+            shoppingCart.deleteGame(idGame);
+            return new ResponseEntity<>(gameService.getGames(idGame), HttpStatus.OK);
+        }
+    }
+    @DeleteMapping ("/removeAllCart")
+    public ResponseEntity<Game>removeAll(){
         shoppingCart.clearCart();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

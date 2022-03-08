@@ -10,7 +10,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 @Service
-@SessionScope
 public class ShoppingCart {
 
     @Autowired
