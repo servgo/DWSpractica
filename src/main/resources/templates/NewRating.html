@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="/styles.css" rel="stylesheet" type="text/css">
+    <link href="/css/styles.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 {{#game}}
 <h1 class="box">Tell us your opinion about {{name}}</h1>
 {{/game}}
-<form action="/NewRating">
+<form action="/NewRating/{{id}}">
 
     <label>Summary:</label>
     <label>
@@ -40,7 +40,7 @@
     <br>
     <br>
     <input class="button" type="submit" value="SUBMIT">
-    <a class="button" href="/ShowGames" style="background-color: darkgrey">Back to games</a>
+    <a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>
     <br>
     <br>
     <br>
