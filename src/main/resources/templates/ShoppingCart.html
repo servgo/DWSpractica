@@ -13,10 +13,7 @@
 Platform: {{platform}} | Id: {{idGame}}
 
 
-<form
-        action="/RemoveGame/{{idGame}}"method="post">
-    <button class="minibutton" style="background-color: crimson">Remove game</button>
-</form>
+<a class="button" href="/RemoveGame/{{idGame}}" style="background-color: crimson">Remove game</a>
 <br>
 ------------------------------------
 
@@ -25,12 +22,9 @@ Platform: {{platform}} | Id: {{idGame}}
 {{/cart}}
 <h2>{{sum}} €</h2>
 
-<form
-        action="/RemoveShoppingCart"method="post">
-    <button class="minibutton" style="background-color: crimson">Remove all games</button>
-</form>
 
-<a class="button" href="/ShowGame/{{id}}" >Show game</a>
+<a class="button" href="/RemoveShoppingCart" style="background-color: crimson">Remove all games</a>
+
 <br>
 <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
 <a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>

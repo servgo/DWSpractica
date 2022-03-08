@@ -3,7 +3,10 @@ package com.example.dwspractica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -14,7 +17,7 @@ public class ShoppingCartController {
     @Autowired
     ShoppingCart shoppingCart;
 
-    @PostMapping("/addedToCart/{idGame}")
+    @GetMapping("/addedToCart/{idGame}")
     public String newGameToCart(@PathVariable int idGame) {
         shoppingCart.addGame(gameService.getGames(idGame));
         return "AddedToCart";
@@ -30,13 +33,13 @@ public class ShoppingCartController {
         return "ShoppingCart";
     }
 
-    @PostMapping("/RemoveGame/{idGame}")
+    @GetMapping("/RemoveGame/{idGame}")
     public String removeGameShoppingCart(@PathVariable int idGame) {
         shoppingCart.deleteGame(idGame);
         return "RemovedGame";
     }
 
-    @PostMapping("/RemoveShoppingCart")
+    @GetMapping("/RemoveShoppingCart")
     public String removeShoppingCart(Model model) {
         shoppingCart.clearCart();
         return "RemovedShoppingCart";

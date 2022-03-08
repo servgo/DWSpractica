@@ -19,30 +19,16 @@ Id: {{idGame}}
 
 <div>
 
-    <form
-            action="/addedToCart/{{idGame}}" method="post">
-        <button class="minibutton">Add tocart</button>
-    </form>
-
+        <a class="minibutton" href="/addedToCart/{{idGame}}">Add to cart</a>
     <br>
     <br>
 
-    <form
-            action="/deleted/{{idGame}}" method="post">
-        <button class="minibutton">Delete game</button>
-    </form>
-
+    <a class="minibutton" href="/deleted/{{idGame}}">Delete game</a>
     <br>
     <br>
-
-    <form
-            action="/update/{{idGame}}" method="post">
-        <button class="minibutton">Edit game</button>
-    </form>
-
+    <a class="minibutton" href="/update/{{idGame}}">Edit game</a>
 </div>
 <br>
-
 <a class="button" href="/game/{{idGame}}/ratings">Show ratings</a>
 <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
 <a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>
