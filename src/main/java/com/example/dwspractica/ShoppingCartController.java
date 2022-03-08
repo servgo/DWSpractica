@@ -33,13 +33,13 @@ public class ShoppingCartController {
         return "ShoppingCart";
     }
 
-    @RequestMapping("/RemoveGame")
+    @GetMapping("/RemoveGame")
     public String removeGameShoppingCart(Model model,@RequestParam Game game) {
         shoppingCart.deleteGame(game);
         return "RemovedGame.html";
     }
 
-    @RequestMapping("/RemoveShoppingCart")
+    @GetMapping("/RemoveShoppingCart")
     public String removeShoppingCart(Model model) {
         shoppingCart.clearCart();
         return "RemovedShoppingCart.html";
