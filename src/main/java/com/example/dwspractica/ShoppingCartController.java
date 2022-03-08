@@ -23,17 +23,10 @@ public class ShoppingCartController {
         return "AddedToCart";
     }
 
-    @RequestMapping("/shoppingCart")
+    @GetMapping("/shoppingCart")
     public String showShoppingCart(Model model) {
 
-        model.addAttribute("cart", shoppingCart);
-
-        if (shoppingCart.esVacia()) {
-            model.addAttribute("empty", true);
-        } else {
-            model.addAttribute("empty", false);
-        }
-
+        model.addAttribute("cart", shoppingCart.getCart());
         float sum = shoppingCart.getPrecio();
 
         model.addAttribute("sum", sum);
