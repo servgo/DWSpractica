@@ -1,5 +1,5 @@
 
-.button {
+.button{
     font-family: Arial, serif;
     background-color: #4CAF50; /* Green */
     border: none;
@@ -11,7 +11,14 @@
     font-size: 16px;
     border-radius: 40px;
 }
-
+.button:hover{
+    color: rgba(227, 255, 226, 0.8) !important;
+    transition: all 0.2s ease;
+    box-shadow: inset 0 0 20px rgba(227, 255, 226, 0.8), 0 0 20px rgba(227, 255, 226, 0.8);
+    outline-color: rgba(49, 138, 172, 0);
+    outline-offset: 80px;
+    text-shadow: 1px 1px 6px #fff;
+}
 
 body {
     font-family: Arial, serif;
@@ -38,6 +45,14 @@ body {
     border-radius: 20px;
 }
 
+.minibutton:hover{
+    color: white !important;
+    transition: all 0.2s ease;
+    box-shadow: inset 0 0 20px rgba(236, 163, 152, 1), 0 0 20px rgba(236, 163, 152, 1);
+    outline-color: rgba(49, 138, 172, 0);
+    outline-offset: 80px;
+    text-shadow: 1px 1px 6px #fff;
+}
 textarea {
     font-family: Arial, serif;
     vertical-align: top;

@@ -11,13 +11,47 @@
 <h2 style="font-family: Arial,serif">In our web you can find a wide selection of games, but first, choose an
     option: </h2>
 <br>
-<a class="button" href="/addGame">Add a new game</a>
+
+<a class="button"  href="/addGame">Add a new game</a>
 <a class="button" href="/allGames">Show all games</a>
 <a class="button" href="/shoppingCart">Show shopping cart</a>
+
+
 <br>
 <br>
-<img alt=""
-     height="500" src="https://as.com/meristation/imagenes/2015/02/26/avance/1424966400_744742_1532457814_sumario_normal.jpg" width="500">
+<!------<img alt=""
+     height="500" src="https://as.com/meristation/imagenes/2015/02/26/avance/1424966400_744742_1532457814_sumario_normal.jpg" width="500">---->
+
+
+    <script language="javaScript">
+        if (self != top)
+        {
+            if (document.images)
+                top.location.replace(window.location.href);
+            else
+                top.location.href = window.location.href;
+        }
+
+        var aImg = new Array(2);
+        aImg[0]='paisaje';
+        aImg[1]='caballos';
+        aImg[2]='mar';
+
+
+        var num
+        var num_fotos
+        num_fotos = aImg.length
+        function diap() {
+
+            num = Math.floor(Math.random()*num_fotos);
+            var imagen = aImg[num]+".jpg"
+            document.images['fotos'].src=imagen;
+
+            var tiempo = setTimeout("diap()","2500");
+        }
+
+    </script>
+
 <br>
 <br>
 <a class="minibutton" value="Refresh site" style="background-color:firebrick" onclick="refresh()">Refresh site</a>
