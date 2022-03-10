@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ratings</title>
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/css/JavaScript.js"></script>
 
@@ -10,7 +10,7 @@
 <body>
 <h1 class="box">Ratings {{name}}</h1>
 {{#ratings}}
-<h1>Rating:</h1>
+<h1>Rating: </h1>
 <strong>{{title}}</strong>
 <br>
 Score: <strong>{{stars}}</strong>
@@ -31,5 +31,8 @@ Score: <strong>{{stars}}</strong>
 <br>
 <br>
 <button class="minibutton" id="BackButton" onclick="back()" style="background-color:firebrick">Back</button>
+<br>
+<br>
+<a class="minibutton" value="Refresh site" style="background-color:firebrick" onclick="refresh()">Refresh site</a>
 </body>
 </html>

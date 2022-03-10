@@ -22,7 +22,7 @@ public class RatingController {
         model.addAttribute("name", gameService.getGames(idGame).getName());
         model.addAttribute("ratings", ratingService.getRatings(idGame));
         if (gameService.getGames(idGame) == null) {
-            return "error/401";
+            return "error/404";
         } else {
             return "ShowRatings";
         }
