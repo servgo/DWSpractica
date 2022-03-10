@@ -1,7 +1,5 @@
 package com.example.dwspractica;
 
-import java.time.LocalDateTime;
-
 public class Game {
     private long idGame = -1;
     private String name;

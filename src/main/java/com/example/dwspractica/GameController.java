@@ -30,8 +30,9 @@ public class GameController {
         ratingService.addRating(3, new Rating(5, "Increible", "Fabulosa historia"));
         ratingService.addRating(3, new Rating(5, "Maravilloso", "10/10"));
     }
+
     @GetMapping("/addGame")
-    public String addGame(){
+    public String addGame() {
         return "NewGame";
     }
 
@@ -62,14 +63,16 @@ public class GameController {
         gameService.deleteGame(idGame);
         return "DeletedGame";
     }
+
     @GetMapping("/update/{idGame}")
-    public String updateGame(Model model, @PathVariable int idGame){
+    public String updateGame(Model model, @PathVariable int idGame) {
         model.addAttribute("game", gameService.getGames(idGame));
         return "updateGame";
     }
+
     @GetMapping("/updated/{idGame}")
-    public String updated(@RequestParam String name, @RequestParam String platform, @RequestParam float price, @PathVariable int idGame){
-        Game aux=new Game(name, platform, price);
+    public String updated(@RequestParam String name, @RequestParam String platform, @RequestParam float price, @PathVariable int idGame) {
+        Game aux = new Game(name, platform, price);
         aux.setId(idGame);
         gameService.updateGame(idGame, aux);
         shoppingCart.updateCart(aux);

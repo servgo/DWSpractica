@@ -2,7 +2,6 @@ package com.example.dwspractica;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.Collection;
 import java.util.Map;
@@ -50,7 +49,8 @@ public class ShoppingCart {
     public void updateCart(Game game) {
         games.put(game.getId(), game);
     }
-    public boolean containsGame(long id){
+
+    public boolean containsGame(long id) {
         return this.games.containsKey(id);
     }
 }

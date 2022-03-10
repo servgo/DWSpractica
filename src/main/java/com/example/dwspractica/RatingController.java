@@ -16,14 +16,15 @@ public class RatingController {
     @Autowired
     GameService gameService;
 
+
     //We can see a game's ratings. If it doesn't exist, we'll see an error
     @RequestMapping("game/{idGame}/ratings")
     public String showRating(Model model, @PathVariable int idGame) {
-        model.addAttribute("name", gameService.getGames(idGame).getName());
-        model.addAttribute("ratings", ratingService.getRatings(idGame));
-        if (gameService.getGames(idGame) == null) {
-            return "error/404";
+        if (!gameService.containsGame(idGame)) {
+            return "error/401";
         } else {
+            model.addAttribute("name", gameService.getGames(idGame).getName());
+            model.addAttribute("ratings", ratingService.getRatings(idGame));
             return "ShowRatings";
         }
     }
@@ -54,7 +55,7 @@ public class RatingController {
     }
 
     @GetMapping("/updateRating/{idRating}")
-    public String updateGame(Model model, @PathVariable int idRating){
+    public String updateGame(Model model, @PathVariable int idRating) {
         model.addAttribute("game", gameService.getGames(idRating));
         return "updateRating";
     }

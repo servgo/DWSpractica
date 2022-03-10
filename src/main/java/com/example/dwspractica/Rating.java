@@ -1,7 +1,5 @@
 package com.example.dwspractica;
 
-import java.time.LocalDateTime;
-
 public class Rating {
     private long id = -1;
     private int stars;

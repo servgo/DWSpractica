@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -17,41 +16,45 @@ public class GameRESTController {
     ShoppingCart shoppingCart;
 
     @PostMapping("/addGame")
-    public ResponseEntity<Game>create(@RequestBody Game game){
+    public ResponseEntity<Game> create(@RequestBody Game game) {
         gameService.addGame(game);
         return new ResponseEntity<>(game, HttpStatus.CREATED);
     }
+
     @GetMapping("/games")
-    public ResponseEntity<Collection<Game>>showAll(){
+    public ResponseEntity<Collection<Game>> showAll() {
         return new ResponseEntity<>(gameService.getGames(), HttpStatus.OK);
     }
+
     @GetMapping("/game/{idGame}")
-    public ResponseEntity<Game>showGame(@PathVariable int idGame){
-        Game aux=gameService.getGames(idGame);
-        if (aux==null){
+    public ResponseEntity<Game> showGame(@PathVariable int idGame) {
+        Game aux = gameService.getGames(idGame);
+        if (aux == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
+        } else {
             return new ResponseEntity<>(aux, HttpStatus.OK);
         }
     }
+
     @DeleteMapping("/delete/{idGame}")
-    public ResponseEntity<Game>delete(@PathVariable int idGame){
-        Game aux=gameService.getGames(idGame);
-        if (aux==null){
+    public ResponseEntity<Game> delete(@PathVariable int idGame) {
+        Game aux = gameService.getGames(idGame);
+        if (aux == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
+        } else {
             gameService.deleteGame(idGame);
             return new ResponseEntity<>(aux, HttpStatus.OK);
         }
     }
+
     @PutMapping("/update/{idGame}")
-    public ResponseEntity<Game>update(@PathVariable int idGame, @RequestBody Game game){
-        if (!gameService.containsGame(idGame)){
+    public ResponseEntity<Game> update(@PathVariable int idGame, @RequestBody Game game) {
+        if (!gameService.containsGame(idGame)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else {
+        } else {
             game.setId(idGame);
             gameService.updateGame(idGame, game);
-            if (shoppingCart.containsGame(game.getId())){
+            if (shoppingCart.containsGame(game.getId())) {
                 shoppingCart.updateCart(game);
             }
             return new ResponseEntity<>(game, HttpStatus.OK);

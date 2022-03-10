@@ -16,31 +16,35 @@ public class ShoppingCartRESTController {
     @Autowired
     ShoppingCart shoppingCart;
 
+    // @ResponseStatus(value = HttpStatus.BAD_REQUEST) public @ResponseBody String handleException() { return "error/400"; }
 
     @GetMapping("/shoppingCart")
-    public ResponseEntity<Collection<Game>>showAll(){
+    public ResponseEntity<Collection<Game>> showAll() {
         return new ResponseEntity<>(shoppingCart.getCart(), HttpStatus.OK);
     }
+
     @PostMapping("/addToCart/{idGame}")
-    public ResponseEntity<Game>addToCart(@PathVariable int idGame){
-        if (!gameService.containsGame(idGame)){
+    public ResponseEntity<Game> addToCart(@PathVariable int idGame) {
+        if (!gameService.containsGame(idGame)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
+        } else {
             shoppingCart.addGame(gameService.getGames(idGame));
             return new ResponseEntity<>(gameService.getGames(idGame), HttpStatus.OK);
         }
     }
+
     @DeleteMapping("/remove/{idGame}")
-    public ResponseEntity<Game>delete(@PathVariable int idGame){
-        if (!shoppingCart.containsGame(idGame)){
+    public ResponseEntity<Game> delete(@PathVariable int idGame) {
+        if (!shoppingCart.containsGame(idGame)) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
+        } else {
             shoppingCart.deleteGame(idGame);
             return new ResponseEntity<>(gameService.getGames(idGame), HttpStatus.OK);
         }
     }
-    @DeleteMapping ("/removeAllCart")
-    public ResponseEntity<Game>removeAll(){
+
+    @DeleteMapping("/removeAllCart")
+    public ResponseEntity<Game> removeAll() {
         shoppingCart.clearCart();
         return new ResponseEntity<>(HttpStatus.OK);
     }
