@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Games Web</title>
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="/static/css/JavaScript.js"></script>
-</head>
+    <script type="text/javascript" src="/css/JavaScript.js"></script>
+</head
 <body>
 <h1 class="box" style="font-size: xx-large; background: royalblue">WELCOME !</h1>
 <h2 style="font-family: Arial,serif">In our web you can find a wide selection of games, but first, choose an
@@ -23,34 +23,14 @@
      height="500" src="https://as.com/meristation/imagenes/2015/02/26/avance/1424966400_744742_1532457814_sumario_normal.jpg" width="500">---->
 
 
-    <script language="javaScript">
-        if (self != top)
-        {
-            if (document.images)
-                top.location.replace(window.location.href);
-            else
-                top.location.href = window.location.href;
-        }
+<br>
+<br>
+<form name = "f1">
+    <input type="button" class="minibutton" style="width: 60px" value = "Back" onclick="backGallery()">
+    <img src="/css/photo1.jpg" width="300" height="200" id = "photo">
+    <input type="button" class="minibutton" style="width: 60px" value = "Next" onclick="nextGallery()">
+</form>
 
-        var aImg = new Array(2);
-        aImg[0]='paisaje';
-        aImg[1]='caballos';
-        aImg[2]='mar';
-
-
-        var num
-        var num_fotos
-        num_fotos = aImg.length
-        function diap() {
-
-            num = Math.floor(Math.random()*num_fotos);
-            var imagen = aImg[num]+".jpg"
-            document.images['fotos'].src=imagen;
-
-            var tiempo = setTimeout("diap()","2500");
-        }
-
-    </script>
 
 <br>
 <br>
