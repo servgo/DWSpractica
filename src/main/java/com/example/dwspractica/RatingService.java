@@ -26,9 +26,11 @@ public class RatingService {
     }
 
     public void deleteRating(long idGame, long idRating) {
-        Map<Long, Rating> aux = this.ratings.get(idGame);
-        aux.remove(idRating);
-        this.ratings.put(idGame, aux);
+        if (gameRepository.existsById(idGame)){
+            if (ratingRepository.existsById(idRating)){
+                ratingRepository.deleteById(idRating);
+            }
+        }
     }
 
     public Collection<Rating> getRatings(long idGame) {
