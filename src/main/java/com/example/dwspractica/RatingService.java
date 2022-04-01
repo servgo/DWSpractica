@@ -46,7 +46,10 @@ public class RatingService {
     }
 
     public boolean containsRating(long idGame, long id) {
-        Map<Long, Rating> aux = this.ratings.get(idGame);
-        return aux.containsKey(id);
+        if(gameRepository.existsById(idGame)){
+            return ratingRepository.existsById(id);
+        }else{
+            return false;
+        }
     }
 }

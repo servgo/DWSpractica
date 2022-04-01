@@ -20,7 +20,7 @@ public class GameController {
 
     @PostConstruct
     public void init() {
-        gameService.addGame(new Game("Elden Ring", "PC", 60));
+        /*gameService.addGame(new Game("Elden Ring", "PC", 60));
         gameService.addGame(new Game("Mario Kart 8", "Switch", 55));
         gameService.addGame(new Game("The Last Of Us 2", "PlayStation", 70));
         ratingService.addRating(1, new Rating(4, "Juegazo", "Muy bueno"));
@@ -28,7 +28,7 @@ public class GameController {
         ratingService.addRating(2, new Rating(2, "Muy infantil", "Aburrido"));
         ratingService.addRating(2, new Rating(5, "Gran juego", "Muy divertido"));
         ratingService.addRating(3, new Rating(5, "Increible", "Fabulosa historia"));
-        ratingService.addRating(3, new Rating(5, "Maravilloso", "10/10"));
+        ratingService.addRating(3, new Rating(5, "Maravilloso", "10/10"));*/
     }
 
     @GetMapping("/addGame")
