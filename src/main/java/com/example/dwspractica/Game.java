@@ -1,15 +1,32 @@
 package com.example.dwspractica;
 
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
+
+@NoArgsConstructor
+@Entity
 public class Game {
-    private long idGame = -1;
+    @Id
+    @GeneratedValue
+    private long idGame;
+
     private String name;
     private String platform;
     private float price;
+
+    public static int GamesId=0;
+
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+    private List<Rating>ratings;
 
     public Game(String name, String platform, float price) {
         this.name = name;
         this.platform = platform;
         this.price = price;
+        Game.GamesId++;
+        this.idGame=Game.GamesId;
     }
 
     public String getName() {

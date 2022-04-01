@@ -1,5 +1,6 @@
 package com.example.dwspractica;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -9,32 +10,35 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class GameService {
-    private Map<Long, Game> games = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
+    @Autowired
+    GameRepository gameRepository;
 
     public void addGame(Game game) {
-        long id = lastId.incrementAndGet();
-        game.setId(id);
-        this.games.put(id, game);
+        gameRepository.save(game);
     }
 
     public void deleteGame(long n) {
-        this.games.remove(n);
+        if (gameRepository.existsById(n)){
+            gameRepository.deleteById(n);
+        }
     }
 
     public Game getGames(long n) {
-        return this.games.get(n);
+        return gameRepository.findById(n).orElse(null);
     }
 
     public Collection<Game> getGames() {
-        return this.games.values();
+        return gameRepository.findAll();
     }
 
     public void updateGame(long id, Game game) {
-        this.games.put(id, game);
+        if (gameRepository.existsById(id)){
+            game.setId(id);
+            gameRepository.save(game);
+        }
     }
 
     public boolean containsGame(long n) {
-        return this.games.containsKey(n);
+        return gameRepository.existsById(n);
     }
 }

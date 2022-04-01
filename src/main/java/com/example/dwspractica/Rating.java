@@ -1,15 +1,32 @@
 package com.example.dwspractica;
 
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@NoArgsConstructor
+@Entity
 public class Rating {
-    private long id = -1;
+    @Id
+    @GeneratedValue
+    private long id;
+
     private int stars;
     private String title;
     private String comment;
+
+    @ManyToOne
+    //@JoinColumn(name = "id_game")
+    private Game game;
+
+    public static int RatingsId=0;
 
     public Rating(int stars, String title, String comment) {
         this.stars = stars;
         this.title = title;
         this.comment = comment;
+        Rating.RatingsId++;
+        this.id=Rating.RatingsId;
     }
 
     public int getStars() {
@@ -42,5 +59,13 @@ public class Rating {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

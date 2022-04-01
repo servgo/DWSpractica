@@ -1,5 +1,6 @@
 package com.example.dwspractica;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -9,18 +10,19 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class RatingService {
+    @Autowired
+    RatingRepository ratingRepository;
+    @Autowired
+    GameRepository gameRepository;
+
     private Map<Long, Map<Long, Rating>> ratings = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
 
     public void addRating(long idGame, Rating rating) {
-        long id = lastId.incrementAndGet();
-        rating.setId(id);
-        Map<Long, Rating> aux = this.ratings.get(idGame);
-        if (aux == null) {
-            aux = new ConcurrentHashMap<>();
+        if (gameRepository.existsById(idGame)){
+            rating.setGame(gameRepository.getById(idGame));
+            ratingRepository.save(rating);
         }
-        aux.put(id, rating);
-        this.ratings.put(idGame, aux);
     }
 
     public void deleteRating(long idGame, long idRating) {
@@ -30,11 +32,11 @@ public class RatingService {
     }
 
     public Collection<Rating> getRatings(long idGame) {
-        Map<Long, Rating> aux = this.ratings.get(idGame);
-        if (aux == null) {
-            aux = new ConcurrentHashMap<>();
+        if (gameRepository.existsById(idGame)){
+            return ratingRepository.findBygame(gameRepository.getById(idGame));
+        }else{
+            return null;
         }
-        return aux.values();
     }
 
     public void updateRating(long idRating) {

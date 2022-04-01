@@ -28,9 +28,11 @@ public class ShoppingCart {
     }
 
     public void deleteGame(long id) {
-        Game aux = gameService.getGames(id);
-        games.remove(id);
-        this.price -= aux.getPrice();
+        if (gameService.containsGame(id)){
+            Game aux = gameService.getGames(id);
+            games.remove(id);
+            this.price -= aux.getPrice();
+        }
     }
 
     public void clearCart() {
