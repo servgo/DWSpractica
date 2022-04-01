@@ -42,6 +42,11 @@ public class ShoppingCartController {
         shoppingCart.clearCart();
         return "RemovedShoppingCart";
     }
+
+    @GetMapping("/MadeOrder")
+    public String madeOrder(){
+        return "CreatedOrder";
+    }
 }
 
 
