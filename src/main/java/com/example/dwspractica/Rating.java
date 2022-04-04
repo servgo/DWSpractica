@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 public class Rating {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private int stars;
@@ -19,14 +19,10 @@ public class Rating {
     //@JoinColumn(name = "id_game")
     private Game game;
 
-    public static int RatingsId=0;
-
     public Rating(int stars, String title, String comment) {
         this.stars = stars;
         this.title = title;
         this.comment = comment;
-        Rating.RatingsId++;
-        this.id=Rating.RatingsId;
     }
 
     public int getStars() {

@@ -9,24 +9,23 @@ import java.util.List;
 @Entity
 public class Game {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idGame;
 
     private String name;
     private String platform;
     private float price;
 
-    public static int GamesId=0;
-
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "game", cascade = CascadeType.REMOVE)
     private List<Rating>ratings;
+
+    @ManyToMany(mappedBy = "juegosPedidos")
+    List<User>usuarios;
 
     public Game(String name, String platform, float price) {
         this.name = name;
         this.platform = platform;
         this.price = price;
-        Game.GamesId++;
-        this.idGame=Game.GamesId;
     }
 
     public String getName() {
@@ -59,5 +58,29 @@ public class Game {
 
     public void setId(long id) {
         this.idGame = id;
+    }
+
+    public long getIdGame() {
+        return idGame;
+    }
+
+    public void setIdGame(long idGame) {
+        this.idGame = idGame;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public List<User> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<User> usuarios) {
+        this.usuarios = usuarios;
     }
 }

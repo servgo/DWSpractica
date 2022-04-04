@@ -28,7 +28,7 @@ public class ShoppingCart {
     }
 
     public void deleteGame(long id) {
-        if (gameService.containsGame(id)){
+        if (this.containsGame(id)){
             Game aux = gameService.getGames(id);
             games.remove(id);
             this.price -= aux.getPrice();
@@ -49,10 +49,15 @@ public class ShoppingCart {
     }
 
     public void updateCart(Game game) {
-        games.put(game.getId(), game);
+        if (this.containsGame(game.getId())){
+            games.put(game.getId(), game);
+        }
     }
 
     public boolean containsGame(long id) {
         return this.games.containsKey(id);
+    }
+    public void makeOrder(){
+
     }
 }
