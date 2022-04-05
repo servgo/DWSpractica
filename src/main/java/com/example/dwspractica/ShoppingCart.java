@@ -3,7 +3,9 @@ package com.example.dwspractica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,6 +15,8 @@ public class ShoppingCart {
 
     @Autowired
     GameService gameService;
+    @Autowired
+    UserService userService;
 
     private float price = 0;
     private Map<Long, Game> games = new ConcurrentHashMap<>();
@@ -57,7 +61,12 @@ public class ShoppingCart {
     public boolean containsGame(long id) {
         return this.games.containsKey(id);
     }
-    public void makeOrder(){
-
+    public void makeOrder(long u){
+        List<Game>aux=new ArrayList<>(this.games.values());
+        User uaux= userService.getUsers(u);
+        for (Game g:aux){
+            uaux.getJuegosPedidos().add(g);
+        }
+        userService.updateUser(u, uaux);
     }
 }

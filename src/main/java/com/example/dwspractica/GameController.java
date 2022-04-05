@@ -17,10 +17,13 @@ public class GameController {
     ShoppingCart shoppingCart;
     @Autowired
     RatingService ratingService;
+    @Autowired
+    UserService userService;
 
     @PostConstruct
     public void init() {
-        /*gameService.addGame(new Game("Elden Ring", "PC", 60));
+        /*userService.addUser(new User("prueba", "prueba"));
+        gameService.addGame(new Game("Elden Ring", "PC", 60));
         gameService.addGame(new Game("Mario Kart 8", "Switch", 55));
         gameService.addGame(new Game("The Last Of Us 2", "PlayStation", 70));
         ratingService.addRating(1, new Rating(4, "Juegazo", "Muy bueno"));
