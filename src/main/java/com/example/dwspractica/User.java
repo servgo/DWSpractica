@@ -58,4 +58,14 @@ public class User {
     public void setJuegosPedidos(List<Game> juegosPedidos) {
         this.juegosPedidos = juegosPedidos;
     }
+    public float getPriceOrders(){
+        float aux=0;
+        for (Game g:this.juegosPedidos){
+            aux+=g.getPrice();
+        }
+        return aux;
+    }
+    public void deleteOrder(Game game){
+        this.juegosPedidos.remove(game);
+    }
 }

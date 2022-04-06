@@ -13,20 +13,20 @@ public class RatingService {
     @Autowired
     RatingRepository ratingRepository;
     @Autowired
-    GameRepository gameRepository;
+    GameService gameService;
 
     private Map<Long, Map<Long, Rating>> ratings = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
 
     public void addRating(long idGame, Rating rating) {
-        if (gameRepository.existsById(idGame)){
-            rating.setGame(gameRepository.getById(idGame));
+        if (gameService.containsGame(idGame)){
+            rating.setGame(gameService.getGames(idGame));
             ratingRepository.save(rating);
         }
     }
 
     public void deleteRating(long idGame, long idRating) {
-        if (gameRepository.existsById(idGame)){
+        if (gameService.containsGame(idGame)){
             if (ratingRepository.existsById(idRating)){
                 ratingRepository.deleteById(idRating);
             }
@@ -34,8 +34,8 @@ public class RatingService {
     }
 
     public Collection<Rating> getRatings(long idGame) {
-        if (gameRepository.existsById(idGame)){
-            return ratingRepository.findBygame(gameRepository.getById(idGame));
+        if (gameService.containsGame(idGame)){
+            return ratingRepository.findBygame(gameService.getGames(idGame));
         }else{
             return null;
         }
@@ -46,7 +46,7 @@ public class RatingService {
     }
 
     public boolean containsRating(long idGame, long id) {
-        if(gameRepository.existsById(idGame)){
+        if(gameService.containsGame(idGame)){
             return ratingRepository.existsById(id);
         }else{
             return false;

@@ -14,6 +14,8 @@ public class ShoppingCartController {
     GameService gameService;
     @Autowired
     ShoppingCart shoppingCart;
+    @Autowired
+    UserService userService;
 
     @GetMapping("/addedToCart/{idGame}")
     public String newGameToCart(@PathVariable int idGame) {
@@ -49,10 +51,17 @@ public class ShoppingCartController {
         shoppingCart.clearCart();
         return "CreatedOrder";
     }
-    /*@GetMapping("/showOrders")
-    public String showOrders(){
-
-    }*/
+    @GetMapping("/showOrders")
+    public String showOrders(Model model){
+        model.addAttribute("orders", shoppingCart.showOrders(1));
+        model.addAttribute("sum", userService.getUsers(1).getPriceOrders());
+        return "MyOrders";
+    }
+    @GetMapping("/deleteOrder/{idGame}")
+    public String deleteOrder(@PathVariable int idGame){
+        userService.deleteOrder(idGame);
+        return "DeletedOrder";
+    }
 }
 
 

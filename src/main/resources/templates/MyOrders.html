@@ -9,18 +9,18 @@
 <body>
 <h1 class="box">YOUR CURRENT ORDERS</h1>
 
-{{#cart}}
+{{#orders}}
 <h2>{{name}} - {{price}}€</h2>
 Platform: {{platform}} | Id: {{idGame}}
 
 
-<a class="button" href="/RemoveGame/{{idGame}}" style="background-color: crimson">Remove game</a>
+<a class="minibutton" href="/deleteOrder/{{idGame}}" style="background-color: crimson">Remove game</a>
 <br>
 ------------------------------------
 
 <hr style="width:25%;">
 
-{{/cart}}
+{{/orders}}
 <h2>{{sum}} €</h2>
 
 ------------------------------------

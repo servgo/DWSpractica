@@ -61,6 +61,7 @@ public class ShoppingCart {
     public boolean containsGame(long id) {
         return this.games.containsKey(id);
     }
+    //mover a userservice
     public void makeOrder(long u){
         List<Game>aux=new ArrayList<>(this.games.values());
         User uaux= userService.getUsers(u);
@@ -68,5 +69,11 @@ public class ShoppingCart {
             uaux.getJuegosPedidos().add(g);
         }
         userService.updateUser(u, uaux);
+    }
+    public List<Game> showOrders(long u){
+        if (userService.containsUser(u)){
+            User aux=userService.getUsers(u);
+            return aux.getJuegosPedidos();
+        }else return null;
     }
 }

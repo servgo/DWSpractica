@@ -9,6 +9,8 @@ import java.util.Collection;
 public class UserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    GameService gameService;
 
     public void addUser(User user){
         userRepository.save(user);
@@ -30,5 +32,13 @@ public class UserService {
     }
     public boolean containsUser(long id){
         return userRepository.existsById(id);
+    }
+    public void makeOrder(long u){
+
+    }
+    public void deleteOrder(long idGame){
+        User u=userRepository.getById((long)1);
+        u.deleteOrder(gameService.getGames(idGame));
+        userRepository.save(u);
     }
 }
