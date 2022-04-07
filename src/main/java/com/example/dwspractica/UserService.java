@@ -3,7 +3,10 @@ package com.example.dwspractica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -11,6 +14,8 @@ public class UserService {
     UserRepository userRepository;
     @Autowired
     GameService gameService;
+    @Autowired
+    ShoppingCart shoppingCart;
 
     public void addUser(User user){
         userRepository.save(user);
@@ -34,11 +39,26 @@ public class UserService {
         return userRepository.existsById(id);
     }
     public void makeOrder(long u){
-
+        List<Game>cart=new ArrayList<>(shoppingCart.getCart());
+        User uaux=userRepository.getById(u);
+        for (Game g:cart){
+            uaux.getJuegosPedidos().add(g);
+        }
+        userRepository.save(uaux);
     }
-    public void deleteOrder(long idGame){
-        User u=userRepository.getById((long)1);
+    public void deleteOrder(long uid, long idGame){
+        User u=userRepository.getById(uid);
         u.deleteOrder(gameService.getGames(idGame));
         userRepository.save(u);
+    }
+    public List<Game>showOrders(long u){
+        if (userRepository.existsById(u)){
+            User aux=userRepository.getById(u);
+            return aux.getJuegosPedidos();
+        }else return null;
+    }
+    public void deleteSameOrders(long uid, long idGame){
+        User u=userRepository.getById(uid);
+        u.getJuegosPedidos().removeAll(Collections.singleton(gameService.getGames(idGame)));
     }
 }

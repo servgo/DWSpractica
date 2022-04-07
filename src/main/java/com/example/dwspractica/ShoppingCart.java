@@ -15,8 +15,6 @@ public class ShoppingCart {
 
     @Autowired
     GameService gameService;
-    @Autowired
-    UserService userService;
 
     private float price = 0;
     private Map<Long, Game> games = new ConcurrentHashMap<>();
@@ -57,23 +55,7 @@ public class ShoppingCart {
             games.put(game.getId(), game);
         }
     }
-
     public boolean containsGame(long id) {
         return this.games.containsKey(id);
-    }
-    //mover a userservice
-    public void makeOrder(long u){
-        List<Game>aux=new ArrayList<>(this.games.values());
-        User uaux= userService.getUsers(u);
-        for (Game g:aux){
-            uaux.getJuegosPedidos().add(g);
-        }
-        userService.updateUser(u, uaux);
-    }
-    public List<Game> showOrders(long u){
-        if (userService.containsUser(u)){
-            User aux=userService.getUsers(u);
-            return aux.getJuegosPedidos();
-        }else return null;
     }
 }

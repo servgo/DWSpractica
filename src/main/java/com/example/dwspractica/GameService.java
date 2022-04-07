@@ -1,6 +1,7 @@
 package com.example.dwspractica;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -12,6 +13,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class GameService {
     @Autowired
     GameRepository gameRepository;
+    @Lazy
+    @Autowired
+    UserService userService;
 
     public void addGame(Game game) {
         gameRepository.save(game);
@@ -19,6 +23,7 @@ public class GameService {
 
     public void deleteGame(long n) {
         if (gameRepository.existsById(n)){
+            userService.deleteSameOrders(2, n);
             gameRepository.deleteById(n);
         }
     }

@@ -47,19 +47,19 @@ public class ShoppingCartController {
 
     @GetMapping("/MadeOrder")
     public String madeOrder(){
-        shoppingCart.makeOrder(1);
+        userService.makeOrder(2);
         shoppingCart.clearCart();
         return "CreatedOrder";
     }
     @GetMapping("/showOrders")
     public String showOrders(Model model){
-        model.addAttribute("orders", shoppingCart.showOrders(1));
-        model.addAttribute("sum", userService.getUsers(1).getPriceOrders());
+        model.addAttribute("orders", userService.showOrders(2));
+        model.addAttribute("sum", userService.getUsers(2).getPriceOrders());
         return "MyOrders";
     }
     @GetMapping("/deleteOrder/{idGame}")
     public String deleteOrder(@PathVariable int idGame){
-        userService.deleteOrder(idGame);
+        userService.deleteOrder(2, idGame);
         return "DeletedOrder";
     }
 }
