@@ -11,7 +11,7 @@
 <body>
 <div>
     <h1 class="box">STORE</h1>
-    <h4>Add the game you want to the cart</h4>
+    <h4>Games that match with your filters</h4>
     {{#games}}
     <h3>{{name}}- {{price}}€</h3>
     <a class="minibutton" href="/game/{{idGame}}">Show details</a>
@@ -19,28 +19,6 @@
     -----------------------------
     {{/games}}
 </div>
-<h4>Filter games</h4>
-<form action="/filteredGames">
-    <label>Platform: </label>
-    <label>
-        <select name="platform">
-            <option>Any</option>
-            <option>PC</option>
-            <option>Xbox</option>
-            <option>PlayStation</option>
-            <option>Switch</option>
-        </select>
-    </label>
-    <label>Min price:</label>
-    <label>
-        <input min="0" name="minprice" step="any" type="number" value="0" max="1000">
-    </label>
-    <label>Max price:</label>
-    <label>
-        <input min="0" name="maxprice" step="any" type="number" value="100" max="1000">
-    </label>
-    <input class="minibutton" type="submit" value="FILTER" style="background-color: gold">
-</form>
 <br>
 <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
 

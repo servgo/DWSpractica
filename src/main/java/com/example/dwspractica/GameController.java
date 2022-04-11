@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.*;
+import java.util.List;
 
 @Controller
 public class GameController {
@@ -19,6 +21,8 @@ public class GameController {
     RatingService ratingService;
     @Autowired
     UserService userService;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @PostConstruct
     public void init() {
@@ -80,5 +84,24 @@ public class GameController {
         gameService.updateGame(idGame, aux);
         shoppingCart.updateCart(aux);
         return "updated";
+    }
+    @GetMapping("/filteredGames")
+    public String filteredGames(Model model, @RequestParam String platform, @RequestParam float minprice, @RequestParam float maxprice){
+        if (platform.equals("Any")){
+            TypedQuery<Game>q1=entityManager.createQuery("SELECT g FROM Game g WHERE g.price BETWEEN ?1 AND ?2", Game.class);
+            q1.setParameter(1, minprice);
+            q1.setParameter(2, maxprice);
+            List<Game>aux=q1.getResultList();
+            model.addAttribute("games", aux);
+            return "FilteredGames";
+        }else{
+            TypedQuery<Game>q2=entityManager.createQuery("SELECT g FROM Game g WHERE g.platform=?3 AND g.price BETWEEN ?1 AND ?2", Game.class);
+            q2.setParameter(1, minprice);
+            q2.setParameter(2, maxprice);
+            q2.setParameter(3, platform);
+            List<Game>aux2=q2.getResultList();
+            model.addAttribute("games", aux2);
+            return "FilteredGames";
+        }
     }
 }
