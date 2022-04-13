@@ -5,7 +5,7 @@
     <title>Ratings</title>
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/css/JavaScript.js"></script>
-
+    <script src="/css/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <h1 class="box">Ratings {{name}}</h1>
@@ -15,8 +15,15 @@
 <br>
 Score: <strong>{{stars}}</strong>
 <br>
-{{comment}}
-<br>
+<textarea name="{{id}}" id="{{id}}" rows="5" cols="30">
+    {{comment}}
+            </textarea>
+<script>
+    CKEDITOR.replace( '{{id}}', {
+        uiColor: '#9AB8F3',
+    });
+
+</script>
 <br>
 <a class="minibutton" href="/game/{{idGame}}/deleteRating/{{id}}" style="background-color: darkgrey">Delete Rating</a>
 <br>

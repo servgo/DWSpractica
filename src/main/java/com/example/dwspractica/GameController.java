@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
@@ -43,7 +44,7 @@ public class GameController {
         return "NewGame";
     }
 
-    @GetMapping("/addedGame")
+    @PostMapping("/addedGame")
     public String newGame(@RequestParam String name, @RequestParam String platform, @RequestParam float price) {
         gameService.addGame(new Game(name, platform, price));
         return "CreatedGame";
@@ -85,7 +86,7 @@ public class GameController {
         shoppingCart.updateCart(aux);
         return "updated";
     }
-    @GetMapping("/filteredGames")
+    @PostMapping("/filteredGames")
     public String filteredGames(Model model, @RequestParam String platform, @RequestParam float minprice, @RequestParam float maxprice){
         if (platform.equals("Any")){
             TypedQuery<Game>q1=entityManager.createQuery("SELECT g FROM Game g WHERE g.price BETWEEN ?1 AND ?2", Game.class);

@@ -3,10 +3,7 @@ package com.example.dwspractica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RatingController {
@@ -41,7 +38,7 @@ public class RatingController {
     }
 
     //We are able to create ratings, adding a title, comments and a rating with stars
-    @GetMapping("/game/{idGame}/newRating")
+    @PostMapping("/game/{idGame}/newRating")
     public String newRating(@RequestParam String title, @RequestParam String comment, @RequestParam int stars, @PathVariable int idGame) {
         Rating aux = new Rating(stars, title, comment);
         ratingService.addRating(idGame, aux);
