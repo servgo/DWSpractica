@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css">
     <link href="/css/styles.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="/css/JavaScript.js"></script>
+    <script src="/css/ckeditor/ckeditor.js"></script>
 
 </head>
-<body onload="enableEditMode()">
+<body onload="enableEditMode();"><!--igual va sin ;-->
 
 {{#game}}
 <h1 class="box">Tell us your opinion about {{name}}</h1>
@@ -25,63 +26,14 @@
     <br>
     <br>
     <label>Comment:</label>
-
-
-    <div class="campo" style="width:100%">
-        <button type="button" onclick="Edit('bold')" title="bold"><i class="fa fa-bold"></i></button>
-        <button type="button" onclick="Edit('italic')" title="italic"><i class="fa fa-italic"></i></button>
-        <button type="button" onclick="Edit('underline')" title="underline"><i class="fa fa-underline"></i></button>
-        <button type="button" onclick="Edit('strikeThrough')" title="strikeThrough"><i class="fa fa-strikethrough"></i></button>
-        <button type="button" onclick="Edit('justifyLeft')" title="Align Left"><i class="fa fa-align-left"></i></button>
-        <button type="button" onclick="Edit('justifyCenter')" title="Align Center"><i class="fa fa-align-center"></i></button>
-        <button type="button" onclick="Edit('justifyFull')" title="justify"><i class="fa fa-align-justify"></i></button>
-        <button type="button" onclick="Edit('cut')" title="cut"><i class="fa fa-cut"></i></button>
-        <button type="button" onclick="Edit('copy')" title="Copy"><i class="fa fa-copy"></i></button>
-        <button type="button" onclick="Edit('indent')" title="text-indent"><i class="fa fa-indent"></i></button>
-        <button type="button" onclick="Edit('outdent')" title="text outdent"><i class="fa fa-outdent"></i></button>
-        <button type="button" onclick="Edit('subscript')" title="subscript"><i class="fa fa-subscript"></i></button>
-        <button type="button" onclick="Edit('superscript')" title="subscript"><i class="fa fa-superscript"></i></button>
-        <button type="button" onclick="Edit('undo')" title="undo"><i class="fa fa-undo"></i></button>
-        <button type="button" onclick="Edit('redo')" title="redo"><i class="fa fa-redo"></i></button>
-        <button type="button" onclick="Edit('insertUnorderedList')" title="unordered list"><i class="fa fa-list-ul"></i></button>
-        <button type="button" onclick="Edit('insertOrderedList')" title="ordered list"><i class="fa fa-list-ol"></i></button>
-        <button type="button" onclick="Edit('insertParagraph')"><i class="fa fa-paragraph"></i></button>
-        <select onchange="execVal('formatBlock',this.value)">
-            <option value="H1">H1</option>
-            <option value="H2">H2</option>
-            <option value="H3">H3</option>
-            <option value="H4">H4</option>
-            <option value="H5">H5</option>
-            <option value="H6">H6</option>
-        </select>
-        <br>
-        <button type="button" onclick="Edit('insertHorizontalRule')" title="insert Horizontal Rule">insert Horizontal Rule</button>
-        <button type="button" onclick="Edit('createLink',prompt('Enter a URL,http://'))"><i class="fa fa-link"></i></button>
-        <button type="button" onclick="Edit('unlink')"><i class="fa fa-unlink"></i></button>
-        <select onchange="execVal('fontName',this.value)">
-            <option value="Arial">Arial</option>
-            <option value="Comic Sans MS">Comic Sans MS</option>
-            <option value="Courier">Courier</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Verdana">Verdana</option>
-        </select>
-        <select onchange="execVal('fontSize',this.value)" title="font size">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-        </select>Font Color<input type="color" onchange="execVal('foreColor',this.value)" /> Highlight<input type="color" onchange="execVal('hiliteColor',this.value)" />
-        <label for="desc"></label>
-        <iframe id="desc" name="descN" rows="3" style="width:80%;height:50px;margin:auto;display:block"></iframe>
-    </div>
-
-
-
+    <textarea name="comment" id="comment" rows="5" cols="30">
+    Escriba aquí su comentario sobre el juego.
+            </textarea>
+    <script>
+        CKEDITOR.replace( 'comment', {
+            uiColor: '#9AB8F3'
+        });
+    </script>
     <br>
     <br>
 
@@ -100,42 +52,13 @@
     <br>
     <br>
     <input class="button" type="submit" value="SUBMIT">
+</form>
+<br>
     <a class="button" href="/allGames" style="background-color: darkgrey">Back to games</a>
     <br>
     <br>
     <br>
     <img alt="" src="http://img1.wikia.nocookie.net/__cb20140831174756/mario/es/images/6/63/Mario_Star.png">
-</form>
-<script src="https://kit.fontawesome.com/4ae3506e7c.js" crossorigin="anonymous"></script>
-<body onload="enableEditMode();">
-<div>
-    <button onclick="execCmd('bold');"><i class="fa fa-bold"></i></button>
-    <button onclick="execCmd('italic');"><i class="fa fa-italic"></i></button>
-    <button onclick="execCmd('underline');"><i class="fa fa-underline"></i></button>
-    <button onclick="execCmd('strikeThrough');"><i class="fa fa-strikethrough"></i></button>
-    <button onclick="execCmd('justifyLeft');"><i class="fa fa-align-left"></i></button>
-    <button onclick="execCmd('justifyCenter');"><i class="fa fa-align-center"></i></button>
-    <button onclick="execCmd('justifyRight');"><i class="fa fa-align-right"></i></button>
-    <button onclick="execCmd('justifyFull');"><i class="fa fa-align-justify"></i></button>
-    <button onclick="execCmd('indent');"><i class="fa fa-indent"></i></button>
-    <button onclick="execCmd('outdent');"><i class="fa fa-dedent"></i></button>
-    <button onclick="execCmd('subscript');"><i class="fa fa-subscript"></i></button>
-    <button onclick="execCmd('superscript');"><i class="fa fa-superscript"></i></button>
-    <button onclick="execCmd('undo');"><i class="fa fa-undo"></i></button>
-    <button onclick="execCmd('repeat');"><i class="fa fa-repeat"></i></button>
-    <button onclick="execCmd('insertUnorderedList');"><i class="fa fa-list-ul"></i></button>
-    <button onclick="execCmd('insertOrderedList');"><i class="fa fa-list-ol"></i></button>
-</div>
-<iframe name="richTextField" style="width: 1000px; height: 500px; "></iframe>
-    <script type="text/javascript">
-        function enableEditMode () {
-            richTextField.document.designMode = 'On';
-        }
-        function execCmd (command) {
-            richTextField.document.execCommand(command, false, null);
-        }
-    </script>
-</body>
 <br>
 <br>
 <br>
