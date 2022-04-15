@@ -1,5 +1,6 @@
 package com.example.dwspractica;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -16,9 +17,11 @@ public class Game {
     private String platform;
     private float price;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "game", cascade = CascadeType.REMOVE)
     private List<Rating>ratings;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "juegosPedidos")
     List<User>usuarios;
 

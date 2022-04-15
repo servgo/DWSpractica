@@ -17,24 +17,25 @@ public class RatingController {
     //We can see a game's ratings. If it doesn't exist, we'll see an error
     @RequestMapping("game/{idGame}/ratings")
     public String showRating(Model model, @PathVariable int idGame) {
-        if (!gameService.containsGame(idGame)) {
-            return "error/401";
-        } else {
+        if (gameService.containsGame(idGame)) {
             model.addAttribute("name", gameService.getGames(idGame).getName());
             model.addAttribute("ratings", ratingService.getRatings(idGame));
             return "ShowRatings";
+        } else {
+            return "error/404";
         }
     }
 
     //We'll be redirected to "NewRating" related to a game and it's id
     @GetMapping("/game/{idGame}/ratings/createRating")
     public String ratingCreation(Model model, @PathVariable int idGame) {
-        if (gameService.getGames(idGame) == null) {
-            return "error/401";
+        if (gameService.containsGame(idGame)) {
+            model.addAttribute("id", idGame);
+            model.addAttribute("game", gameService.getGames(idGame));
+            return "NewRating";
+        }else{
+            return "error/404";
         }
-        model.addAttribute("id", idGame);
-        model.addAttribute("game", gameService.getGames(idGame));
-        return "NewRating";
     }
 
     //We are able to create ratings, adding a title, comments and a rating with stars
@@ -47,13 +48,15 @@ public class RatingController {
 
     @GetMapping("/game/{idGame}/deleteRating/{id}")
     public String deleteRating(Model model, @PathVariable int idGame, @PathVariable int id) {
-        ratingService.deleteRating(idGame, id);
-        return "DeletedRating";
-    }
-
-    @GetMapping("/updateRating/{idRating}")
-    public String updateGame(Model model, @PathVariable int idRating) {
-        model.addAttribute("game", gameService.getGames(idRating));
-        return "updateRating";
+        if (gameService.containsGame(idGame)){
+            if (ratingService.containsRating(idGame, id)){
+                ratingService.deleteRating(idGame, id);
+                return "DeletedRating";
+            }else{
+                return "error/404";
+            }
+        }else{
+            return "error/404";
+        }
     }
 }

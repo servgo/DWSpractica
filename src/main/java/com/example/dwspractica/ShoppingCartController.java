@@ -19,8 +19,12 @@ public class ShoppingCartController {
 
     @GetMapping("/addedToCart/{idGame}")
     public String newGameToCart(@PathVariable int idGame) {
-        shoppingCart.addGame(gameService.getGames(idGame));
-        return "AddedToCart";
+        if (gameService.containsGame(idGame)){
+            shoppingCart.addGame(gameService.getGames(idGame));
+            return "AddedToCart";
+        }else{
+            return "error/404";
+        }
     }
 
     @GetMapping("/shoppingCart")
@@ -35,8 +39,16 @@ public class ShoppingCartController {
 
     @GetMapping("/RemoveGame/{idGame}")
     public String removeGameShoppingCart(@PathVariable int idGame) {
-        shoppingCart.deleteGame(idGame);
-        return "RemovedGame";
+        if (gameService.containsGame(idGame)){
+            if (shoppingCart.containsGame(idGame)){
+                shoppingCart.deleteGame(idGame);
+                return "RemovedGame";
+            }else{
+                return "error/404";
+            }
+        }else{
+            return "error/404";
+        }
     }
 
     @GetMapping("/RemoveShoppingCart")
