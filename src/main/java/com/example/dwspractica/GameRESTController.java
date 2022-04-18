@@ -42,6 +42,7 @@ public class GameRESTController {
         if (aux == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
+            shoppingCart.deleteGame(idGame);
             gameService.deleteGame(idGame);
             return new ResponseEntity<>(aux, HttpStatus.OK);
         }

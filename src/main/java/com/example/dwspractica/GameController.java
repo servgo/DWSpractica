@@ -59,23 +59,32 @@ public class GameController {
     @GetMapping("/game/{idGame}")
     public String showGame(Model model, @PathVariable int idGame) {
         model.addAttribute("game", gameService.getGames(idGame));
-        if (gameService.getGames(idGame) == null) {
-            return "error/401";
+        if (gameService.containsGame(idGame)) {
+            return "ShowGame";
+        }else{
+            return "error/404";
         }
-        return "ShowGame";
     }
 
     @GetMapping("/deleted/{idGame}")
     public String deleteGame(@PathVariable int idGame) {
-        shoppingCart.deleteGame(idGame);
-        gameService.deleteGame(idGame);
-        return "DeletedGame";
+        if (gameService.containsGame(idGame)){
+            shoppingCart.deleteGame(idGame);
+            gameService.deleteGame(idGame);
+            return "DeletedGame";
+        }else{
+            return "error/404";
+        }
     }
 
     @GetMapping("/update/{idGame}")
     public String updateGame(Model model, @PathVariable int idGame) {
-        model.addAttribute("game", gameService.getGames(idGame));
-        return "updateGame";
+        if (gameService.containsGame(idGame)){
+            model.addAttribute("game", gameService.getGames(idGame));
+            return "updateGame";
+        }else{
+            return "error/404";
+        }
     }
 
     @GetMapping("/updated/{idGame}")
