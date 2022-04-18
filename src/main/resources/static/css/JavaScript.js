@@ -27,3 +27,4 @@ function backGallery() {
         photo.src = "/css/photo" + num + ".jpg";
     }
 }
+

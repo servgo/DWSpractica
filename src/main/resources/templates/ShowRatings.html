@@ -15,16 +15,24 @@
 <br>
 Score: <strong>{{stars}}</strong>
 <br>
-<textarea name="{{id}}" id="{{id}}" rows="5" cols="30">
+
+
+
+
+<div>
+<textarea name="{{id}}" id="{{id}}" rows="5" cols="30"  style="cursor: default">
     {{comment}}
             </textarea>
+
 <script>
     CKEDITOR.replace( '{{id}}', {
         uiColor: '#FFFFFF',
-        toolbar:[]
+        toolbar:[],
+        allowedContent: 'p h1 h2 strong em; a[!href]; img[!src,width,height];'
     });
 
 </script>
+</div>
 <br>
 <a class="minibutton" href="/game/{{idGame}}/deleteRating/{{id}}" style="background-color: darkgrey">Delete Rating</a>
 <br>
