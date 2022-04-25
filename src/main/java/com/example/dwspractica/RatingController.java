@@ -15,7 +15,7 @@ public class RatingController {
 
 
     //We can see a game's ratings. If it doesn't exist, we'll see an error
-    @RequestMapping("game/{idGame}/ratings")
+    @GetMapping("game/{idGame}/ratings")
     public String showRating(Model model, @PathVariable int idGame) {
         if (gameService.containsGame(idGame)) {
             model.addAttribute("name", gameService.getGames(idGame).getName());
