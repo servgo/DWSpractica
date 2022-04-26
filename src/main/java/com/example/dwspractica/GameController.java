@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.*;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -56,10 +57,12 @@ public class GameController {
         return "ShowGames";
     }
 
-    @GetMapping("/game/{idGame}")
-    public String showGame(Model model, @PathVariable int idGame) {
-        model.addAttribute("game", gameService.getGames(idGame));
+    @GetMapping("/gameDetails/{idGame}")
+    public String showGame(Model model, @PathVariable int idGame, HttpServletRequest request) {
         if (gameService.containsGame(idGame)) {
+            model.addAttribute("game", gameService.getGames(idGame));
+            model.addAttribute("user", request.isUserInRole("USER"));
+            model.addAttribute("admin", request.isUserInRole("ADMIN"));
             return "ShowGame";
         }else{
             return "error/404";

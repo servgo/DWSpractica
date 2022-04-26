@@ -11,13 +11,22 @@
 <h2 style="font-family: Arial,serif">In our web you can find a wide selection of games, but first, choose an
     option: </h2>
 <br>
-
-<a class="button"  href="/addGame">Add a new game</a>
 <a class="button" href="/allGames">Show all games</a>
+{{#admin}}
+<a class="button"  href="/addGame">Add a new game</a>
+<a class="button" href="/myProfile">My profile</a>
+{{/admin}}
+{{#user}}
 <a class="button" href="/shoppingCart">Show shopping cart</a>
 <a class="button" href="/showOrders">Show my orders</a>
+<a class="button" href="/myProfile">My profile</a>
+{{/user}}
 
-
+{{^admin}}
+{{^user}}
+<a class="button" href="/home/login">Login</a>
+{{/user}}
+{{/admin}}
 <br>
 <br>
 <img alt=""

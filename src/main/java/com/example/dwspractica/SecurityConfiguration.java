@@ -14,9 +14,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-        String encodedPassword = encoder.encode("pass");
+        auth.inMemoryAuthentication().withUser("user").password(encoder.encode("pass")).roles("USER");
+        auth.inMemoryAuthentication().withUser("admin").password(encoder.encode("adminpass")).roles("ADMIN");
 
-        auth.inMemoryAuthentication().withUser("user").password(encodedPassword).roles("USER");
     }
 
     @Override
@@ -28,6 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/home/loginerror").permitAll();
         http.authorizeRequests().antMatchers("/home/logout").permitAll();
         http.authorizeRequests().antMatchers("/css/**").permitAll();
+        http.authorizeRequests().antMatchers("/allGames").permitAll();
+        http.authorizeRequests().antMatchers("/gameDetails/**").permitAll();
 
         // Private pages (all other pages)
         http.authorizeRequests().anyRequest().authenticated();

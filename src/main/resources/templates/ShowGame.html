@@ -19,15 +19,17 @@ Id: {{idGame}}
 <br>
 
 <div>
-
-        <a class="minibutton" href="/addedToCart/{{idGame}}">Add to cart</a>
+    {{#user}}
+    <a class="minibutton" href="/addedToCart/{{idGame}}">Add to cart</a>
+    {{/user}}
     <br>
     <br>
-
+    {{#admin}}
     <a class="minibutton" href="/deleted/{{idGame}}">Delete game</a>
     <br>
     <br>
     <a class="minibutton" href="/update/{{idGame}}">Edit game</a>
+    {{/admin}}
 </div>
 <br>
 <a class="button" href="/home/" style="background-color: darkgrey">Back to home</a>
