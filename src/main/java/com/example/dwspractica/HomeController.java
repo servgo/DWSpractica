@@ -3,6 +3,7 @@ package com.example.dwspractica;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -28,5 +29,13 @@ public class HomeController {
     @GetMapping("/logout")
     public String logout(){
         return "Logout";
+    }
+    @GetMapping("/register")
+    public String register(){
+        return "Register";
+    }
+    @GetMapping("/registered")
+    public String registered(@PathVariable String username, @PathVariable String password){
+        return "Registered";
     }
 }

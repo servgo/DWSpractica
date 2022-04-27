@@ -2,7 +2,9 @@ package com.example.dwspractica;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,7 +32,7 @@ public class User {
 
     public User(String nombre, String password){
         this.nombre=nombre;
-        this.password= new BCryptPasswordEncoder().encode(password);
+        this.password= new BCryptPasswordEncoder(10).encode(password);
     }
 
     public long getId_usuario() {
