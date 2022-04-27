@@ -61,4 +61,11 @@ public class UserService {
         User u=userRepository.getById(uid);
         u.getJuegosPedidos().removeAll(Collections.singleton(gameService.getGames(idGame)));
     }
+    public int getIdFromName(String name){
+        User u=userRepository.findByNombre(name).orElse(null);
+        return (int)u.getId_usuario();
+    }
+    public boolean usernameAlreadyExists(String name){
+        return userRepository.existsByNombre(name);
+    }
 }

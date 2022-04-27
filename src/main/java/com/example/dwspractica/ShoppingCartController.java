@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class ShoppingCartController {
@@ -58,20 +60,20 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/MadeOrder")
-    public String madeOrder(){
-        userService.makeOrder(2);
+    public String madeOrder(HttpServletRequest request){
+        userService.makeOrder(userService.getIdFromName(request.getUserPrincipal().getName()));
         shoppingCart.clearCart();
         return "CreatedOrder";
     }
     @GetMapping("/showOrders")
-    public String showOrders(Model model){
-        model.addAttribute("orders", userService.showOrders(2));
-        model.addAttribute("sum", userService.getUsers(2).getPriceOrders());
+    public String showOrders(Model model, HttpServletRequest request){
+        model.addAttribute("orders", userService.showOrders(userService.getIdFromName(request.getUserPrincipal().getName())));
+        model.addAttribute("sum", userService.getUsers(userService.getIdFromName(request.getUserPrincipal().getName())).getPriceOrders());
         return "MyOrders";
     }
     @GetMapping("/deleteOrder/{idGame}")
-    public String deleteOrder(@PathVariable int idGame){
-        userService.deleteOrder(2, idGame);
+    public String deleteOrder(@PathVariable int idGame, HttpServletRequest request){
+        userService.deleteOrder(userService.getIdFromName(request.getUserPrincipal().getName()), idGame);
         return "DeletedOrder";
     }
 }

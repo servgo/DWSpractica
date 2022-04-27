@@ -38,8 +38,12 @@ public class HomeController {
     @PostMapping("/registered")
     public String registered(@RequestParam String username, @RequestParam String password){
         if (!username.equals("") && !password.equals("")){
-            userService.addUser(new User(username, password, "USER"));
-            return "Registered";
+            if (!userService.usernameAlreadyExists(username)){
+                userService.addUser(new User(username, password, "USER"));
+                return "Registered";
+            }else{
+                return "UAE";
+            }
         }
        else{
            return "error/400";
