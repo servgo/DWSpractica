@@ -31,9 +31,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/allGames").permitAll();
         http.authorizeRequests().antMatchers("/gameDetails/**").permitAll();
         http.authorizeRequests().antMatchers("/game/**/ratings").permitAll();
+        http.authorizeRequests().antMatchers("/filteredGames").permitAll();
 
         // Private pages (all other pages)
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().antMatchers("/addGame").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("/addedGame").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("/deleted/**").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("/update/**").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("/updated/**").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("/game/**/ratings/createRating").hasRole("USER");
+        http.authorizeRequests().antMatchers("/game/**/newRating").hasRole("USER");
+        http.authorizeRequests().antMatchers("/game/**/deleteRating/**").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("/addedToCart/**").hasRole("USER");
+        http.authorizeRequests().antMatchers("/shoppingCart").hasRole("USER");
+        http.authorizeRequests().antMatchers("/RemoveGame/**").hasRole("USER");
+        http.authorizeRequests().antMatchers("/RemoveShoppingCart").hasRole("USER");
+        http.authorizeRequests().antMatchers("/MadeOrder").hasRole("USER");
+        http.authorizeRequests().antMatchers("/showOrders").hasRole("USER");
+        http.authorizeRequests().antMatchers("/deleteOrder/**").hasRole("USER");
+        http.authorizeRequests().antMatchers("/myProfile").hasAnyRole("USER", "ADMIN");
 
         // Login form
         http.formLogin().loginPage("/home/login");

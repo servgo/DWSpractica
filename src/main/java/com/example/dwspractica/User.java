@@ -1,6 +1,8 @@
 package com.example.dwspractica;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +17,10 @@ public class User {
     private String nombre;
     private String password;
 
+    @JsonIgnore
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles;
+
     @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(name = "Orders",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -24,7 +30,7 @@ public class User {
 
     public User(String nombre, String password){
         this.nombre=nombre;
-        this.password=password;
+        this.password= new BCryptPasswordEncoder().encode(password);
     }
 
     public long getId_usuario() {
@@ -58,6 +64,15 @@ public class User {
     public void setJuegosPedidos(List<Game> juegosPedidos) {
         this.juegosPedidos = juegosPedidos;
     }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
     public float getPriceOrders(){
         float aux=0;
         for (Game g:this.juegosPedidos){
