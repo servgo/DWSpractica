@@ -28,7 +28,8 @@ public class GameController {
 
     @PostConstruct
     public void init() {
-        /*userService.addUser(new User("prueba", "prueba"));
+       // userService.addUser(new User("Sergio", "probando", "USER"));
+     /*   userService.addUser(new User("prueba", "prueba"));
         gameService.addGame(new Game("Elden Ring", "PC", 60));
         gameService.addGame(new Game("Mario Kart 8", "Switch", 55));
         gameService.addGame(new Game("The Last Of Us 2", "PlayStation", 70));

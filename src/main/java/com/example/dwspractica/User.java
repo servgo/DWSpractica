@@ -28,9 +28,10 @@ public class User {
     )
     List<Game>juegosPedidos;
 
-    public User(String nombre, String password){
+    public User(String nombre, String password, String... roles){
         this.nombre=nombre;
         this.password= new BCryptPasswordEncoder().encode(password);
+        this.roles = List.of(roles);
     }
 
     public long getId_usuario() {

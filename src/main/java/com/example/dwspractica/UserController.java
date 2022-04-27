@@ -17,4 +17,6 @@ public class UserController {
         model.addAttribute("nombre", request.getUserPrincipal().getName());
         return "Profile";
     }
+
+
 }
