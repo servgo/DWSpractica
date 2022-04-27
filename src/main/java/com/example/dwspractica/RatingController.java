@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class RatingController {
 
@@ -16,10 +18,12 @@ public class RatingController {
 
     //We can see a game's ratings. If it doesn't exist, we'll see an error
     @GetMapping("game/{idGame}/ratings")
-    public String showRating(Model model, @PathVariable int idGame) {
+    public String showRating(Model model, @PathVariable int idGame, HttpServletRequest request) {
         if (gameService.containsGame(idGame)) {
             model.addAttribute("name", gameService.getGames(idGame).getName());
             model.addAttribute("ratings", ratingService.getRatings(idGame));
+            model.addAttribute("user", request.isUserInRole("USER"));
+            model.addAttribute("admin", request.isUserInRole("ADMIN"));
             return "ShowRatings";
         } else {
             return "error/404";

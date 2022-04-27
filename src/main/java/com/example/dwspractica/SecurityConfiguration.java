@@ -30,6 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/css/**").permitAll();
         http.authorizeRequests().antMatchers("/allGames").permitAll();
         http.authorizeRequests().antMatchers("/gameDetails/**").permitAll();
+        http.authorizeRequests().antMatchers("/game/**/ratings").permitAll();
 
         // Private pages (all other pages)
         http.authorizeRequests().anyRequest().authenticated();
