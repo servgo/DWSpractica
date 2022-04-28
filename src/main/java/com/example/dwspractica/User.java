@@ -21,7 +21,7 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany
     @JoinTable(name = "Orders",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id")
@@ -30,7 +30,7 @@ public class User {
 
     public User(String nombre, String password, String... roles){
         this.nombre=nombre;
-        this.password= new BCryptPasswordEncoder().encode(password);
+        this.password= new BCryptPasswordEncoder(10).encode(password);
         this.roles = List.of(roles);
     }
 
@@ -55,7 +55,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = new BCryptPasswordEncoder(10).encode(password);
     }
 
     public List<Game> getJuegosPedidos() {

@@ -68,4 +68,9 @@ public class UserService {
     public boolean usernameAlreadyExists(String name){
         return userRepository.existsByNombre(name);
     }
+    public void changePassword(long uid, String password){
+        User u=userRepository.getById(uid);
+        u.setPassword(password);
+        userRepository.save(u);
+    }
 }
