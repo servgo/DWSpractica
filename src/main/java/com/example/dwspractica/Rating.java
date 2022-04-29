@@ -1,6 +1,8 @@
 package com.example.dwspractica;
 
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -16,6 +18,7 @@ public class Rating {
     private String comment;
 
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     //@JoinColumn(name = "id_game")
     private Game game;
 

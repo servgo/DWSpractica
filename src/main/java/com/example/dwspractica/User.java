@@ -2,6 +2,8 @@ package com.example.dwspractica;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -13,11 +15,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_usuario;
-
+    @Column(unique = true)
     private String nombre;
     private String password;
 
     @JsonIgnore
+    @JoinColumn
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 

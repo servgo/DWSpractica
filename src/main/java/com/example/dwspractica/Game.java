@@ -2,6 +2,8 @@ package com.example.dwspractica;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +20,7 @@ public class Game {
     private float price;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "game", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "game")
     private List<Rating>ratings;
 
     @JsonIgnore
