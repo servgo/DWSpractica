@@ -12,6 +12,7 @@
 
 <div class="margin">
     <form action="/addedGame" method="post">
+        <input type="hidden" name="_csrf" value="{{token}}"/>
         <label>Name: </label>
         <br>
         <label>

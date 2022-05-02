@@ -18,7 +18,7 @@
 <h1 class="box">Tell us your opinion about {{name}}</h1>
 {{/game}}
 <form action="/game/{{idGame}}/newRating" method="post">
-
+    <input type="hidden" name="_csrf" value="{{token}}"/>
     <label>Summary:</label>
     <label>
         <input name="title" type="text">

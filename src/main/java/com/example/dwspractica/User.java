@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -18,6 +19,9 @@ public class User {
     @Column(unique = true)
     private String nombre;
     private String password;
+    private boolean accountNonLocked;
+
+
 
     @JsonIgnore
     @JoinColumn
@@ -36,6 +40,7 @@ public class User {
         this.nombre=nombre;
         this.password= new BCryptPasswordEncoder(10).encode(password);
         this.roles = List.of(roles);
+
     }
 
     public long getId_usuario() {
@@ -88,4 +93,6 @@ public class User {
     public void deleteOrder(Game game){
         this.juegosPedidos.remove(game);
     }
+
+
 }

@@ -8,6 +8,7 @@
     <script src="/css/ckeditorc/ckeditor.js"></script>
 </head>
 <body>
+<input type="hidden" name="_csrf" value="{{token}}"/>
 <h1 class="box">Ratings {{name}}</h1>
 {{#ratings}}
 <h1>Rating: </h1>

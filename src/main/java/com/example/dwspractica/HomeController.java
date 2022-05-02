@@ -1,6 +1,7 @@
 package com.example.dwspractica;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +21,7 @@ public class HomeController {
         return "index";
     }
     @GetMapping("/login")
-    public String login(){
-        return "Login";
-    }
+    public String login(){return "Login";}
     @GetMapping("/loginerror")
     public String loginerror(){
         return "LoginError";
