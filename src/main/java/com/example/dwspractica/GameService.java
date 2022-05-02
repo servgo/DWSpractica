@@ -23,7 +23,7 @@ public class GameService {
 
     public void deleteGame(long n) {
         if (gameRepository.existsById(n)){
-            userService.deleteSameOrders(2, n);
+            userService.deleteSameOrders(n);
             gameRepository.deleteById(n);
         }
     }

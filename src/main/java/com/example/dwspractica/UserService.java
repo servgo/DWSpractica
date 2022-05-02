@@ -57,9 +57,12 @@ public class UserService {
             return aux.getJuegosPedidos();
         }else return null;
     }
-    public void deleteSameOrders(long uid, long idGame){
-        User u=userRepository.getById(uid);
-        u.getJuegosPedidos().removeAll(Collections.singleton(gameService.getGames(idGame)));
+    public void deleteSameOrders(long idGame){
+        List<User>aux=userRepository.findAll();
+        for(User u:aux){
+            u.deleteOrder(gameService.getGames(idGame));
+            userRepository.save(u);
+        }
     }
     public int getIdFromName(String name){
         User u=userRepository.findByNombre(name).orElse(null);

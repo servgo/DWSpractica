@@ -19,9 +19,6 @@ public class User {
     @Column(unique = true)
     private String nombre;
     private String password;
-    private boolean accountNonLocked;
-
-
 
     @JsonIgnore
     @JoinColumn

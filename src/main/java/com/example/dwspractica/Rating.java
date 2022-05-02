@@ -16,16 +16,18 @@ public class Rating {
     private int stars;
     private String title;
     private String comment;
+    private long id_ur;
 
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     //@JoinColumn(name = "id_game")
     private Game game;
 
-    public Rating(int stars, String title, String comment) {
+    public Rating(int stars, String title, String comment, long id_ur) {
         this.stars = stars;
         this.title = title;
         this.comment = comment;
+        this.id_ur=id_ur;
     }
 
     public int getStars() {
@@ -66,5 +68,13 @@ public class Rating {
 
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    public long getId_ur() {
+        return id_ur;
+    }
+
+    public void setId_ur(long id_ur) {
+        this.id_ur = id_ur;
     }
 }

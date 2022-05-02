@@ -15,9 +15,6 @@ public class RatingService {
     @Autowired
     GameService gameService;
 
-    private Map<Long, Map<Long, Rating>> ratings = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
-
     public void addRating(long idGame, Rating rating) {
         if (gameService.containsGame(idGame)){
             rating.setGame(gameService.getGames(idGame));
@@ -40,9 +37,12 @@ public class RatingService {
             return null;
         }
     }
-
-    public void updateRating(long idRating) {
-        this.ratings.put(idRating, ratings.get(idRating));
+    public Rating getRatings(long idGame, long id){
+        if (gameService.containsGame(idGame)){
+            return ratingRepository.findById(id);
+        }else{
+            return null;
+        }
     }
 
     public boolean containsRating(long idGame, long id) {
