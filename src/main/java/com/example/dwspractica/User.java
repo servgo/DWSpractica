@@ -18,12 +18,13 @@ public class User {
     private long id_usuario;
     @Column(unique = true)
     private String nombre;
+    @JsonIgnore
     private String password;
 
-    @JsonIgnore
     @JoinColumn
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ElementCollection(fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<String> roles;
 
     @ManyToMany
@@ -31,6 +32,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id")
     )
+    @JsonIgnore
     List<Game>juegosPedidos;
 
     public User(String nombre, String password, String... roles){

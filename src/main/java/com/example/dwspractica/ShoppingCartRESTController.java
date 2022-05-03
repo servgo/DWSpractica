@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -53,20 +54,20 @@ public class ShoppingCartRESTController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PostMapping("/makeOrder")
-    public ResponseEntity<Collection<Game>>makeOrder(){
+    public ResponseEntity<Collection<Game>>makeOrder(HttpServletRequest request){
         List<Game>cart=new ArrayList<>(shoppingCart.getCart());
-        userService.makeOrder(2);
+        userService.makeOrder(userService.getIdFromName(request.getUserPrincipal().getName()));
         shoppingCart.clearCart();
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
     @GetMapping("/myOrders")
-    public ResponseEntity<Collection<Game>>showOrders(){
-        return new ResponseEntity<>(userService.showOrders(2), HttpStatus.OK);
+    public ResponseEntity<Collection<Game>>showOrders(HttpServletRequest request){
+        return new ResponseEntity<>(userService.showOrders(userService.getIdFromName(request.getUserPrincipal().getName())), HttpStatus.OK);
     }
     @DeleteMapping("/deleteOrder/{idGame}")
-    public ResponseEntity<Game>deleteOrder(@PathVariable int idGame){
+    public ResponseEntity<Game>deleteOrder(@PathVariable int idGame, HttpServletRequest request){
         if (gameService.containsGame(idGame)){
-            userService.deleteOrder(2, idGame);
+            userService.deleteOrder(userService.getIdFromName(request.getUserPrincipal().getName()), idGame);
             return new ResponseEntity<>(gameService.getGames(idGame), HttpStatus.OK);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

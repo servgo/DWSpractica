@@ -59,6 +59,8 @@ public class SecurityRESTConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/makeOrder").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/myOrders").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/deleteOrder/**").hasRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/showUsers").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/deleteUser/**").hasRole("ADMIN");
 
         // Login form
         http.formLogin().disable();
