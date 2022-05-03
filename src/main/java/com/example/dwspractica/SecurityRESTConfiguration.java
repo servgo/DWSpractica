@@ -50,7 +50,7 @@ public class SecurityRESTConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/addGame").hasRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/delete/**").hasRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/update/**").hasRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/deleteRating/**/**").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/deleteRating/**/**").hasAnyRole("ADMIN", "USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/addRating/**").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/shoppingCart").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/api/addToCart/**").hasRole("USER");
