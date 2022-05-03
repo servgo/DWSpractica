@@ -18,7 +18,7 @@ public class UserRESTController {
     public ResponseEntity<User>newUser(@RequestBody SingUp singUp){
         User aux=new User(singUp.getNombre(), singUp.getPassword(), "USER");
         userService.addUser(aux);
-        return new ResponseEntity<>(aux, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @GetMapping("/showUsers")
     public ResponseEntity<Collection<User>>showUsers(){
